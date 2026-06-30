@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTAGroup from '../components/CTAGroup.astro';
+import { siteConfig } from '../config/site';
+
+const description =
+  'Learn about Zeeshan Khan, independent technical internship coach — background, recruiting experience, and expertise boundaries.';
+---
+
+<BaseLayout title="About" description={description} path="/about">
+  <section class="section-padding">
+    <div class="container-page">
+      <Breadcrumbs items={[{ label: 'About', href: '/about' }]} />
+
+      <h1 class="text-heading">About {siteConfig.founderName}</h1>
+      <p class="prose-content mt-6 max-w-3xl text-lg">
+        Independent coaching for students pursuing technical internships — built on real recruiting experience, honest boundaries, and a focus on truthful positioning.
+      </p>
+
+      <div class="prose-content mt-12 max-w-3xl">
+        <h2>Background</h2>
+        <p>
+          {siteConfig.founderName} is pursuing a B.S. in Computer Science at the University of Illinois Urbana-Champaign and expects to graduate in December 2026. He is currently a Software Engineering Intern at Splunk.
+        </p>
+        <p>
+          His recruiting experience includes four technical-internship offers—from CVS, Cisco, Apex Fintech Solutions, and EnergyCX—interviews with more than 15 companies, an Amazon final round (no offer), an Oracle Superday (no offer), and more than 300 applications during a recent recruiting cycle. He has also built technical products used by thousands of people.
+        </p>
+        <p>
+          For more than a year, he has independently studied technical internship recruiting through his own experience, conversations with dozens of recruiters in different contexts, market observation, candidate outcomes, and continued research.
+        </p>
+
+        <h2>Strongest areas</h2>
+        <ul>
+          <li>Résumé positioning</li>
+          <li>Project presentation</li>
+          <li>Truthful metrics</li>
+          <li>Application strategy</li>
+          <li>LinkedIn and portfolio guidance</li>
+          <li>Networking and referral strategy</li>
+          <li>Behavioral preparation</li>
+          <li>Explaining technical work</li>
+          <li>Technical-interview preparation planning</li>
+        </ul>
+
+        <h2>How Zeeshan approaches coaching</h2>
+        <p>
+          He approaches coaching as a knowledgeable peer and disciplined coach—not as a recruiter, hiring manager, senior engineer, or universal technical expert. The goal is to help you present your work clearly, build a realistic recruiting system, and prepare thoughtfully for interviews.
+        </p>
+
+        <h2>Expertise boundaries</h2>
+        <p>
+          Zeeshan&apos;s strongest experience is in software engineering recruiting. For AI, data, infrastructure, cybersecurity, and related roles, he distinguishes between transferable recruiting guidance, role-specific advice supported by actual knowledge, and advanced preparation that may require specialized resources or subject-matter experts.
+        </p>
+
+        <h2>What this service is not</h2>
+        <ul>
+          <li>Not affiliated with or endorsed by UIUC, Splunk, Cisco, or any other employer mentioned</li>
+          <li>Not a recruiting agency, academy, or employer-sponsored program</li>
+          <li>Not a guarantee of interviews, offers, or sponsorship</li>
+          <li>Not immigration, legal, tax, or financial advice</li>
+        </ul>
+      </div>
+
+      {!siteConfig.linkedinUrl.includes('PLACEHOLDER') && (
+        <div class="mt-10">
+          <a
+            href={siteConfig.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            View LinkedIn profile
+          </a>
+        </div>
+      )}
+
+      <div class="mt-12">
+        <CTAGroup
+          primary={{ label: 'Apply for Coaching', href: '/apply' }}
+          secondary={{ label: 'View the Program', href: '/program', variant: 'secondary' }}
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

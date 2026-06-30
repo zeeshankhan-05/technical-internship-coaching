@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import IntakeForm from '../components/IntakeForm.astro';
+import Callout from '../components/Callout.astro';
+
+const description =
+  'Apply for technical internship coaching. Complete the intake form to begin the free strategy call process.';
+---
+
+<BaseLayout title="Apply" description={description} path="/apply">
+  <section class="section-padding">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Apply', href: '/apply' }]} />
+
+      <h1 class="text-heading">Apply for coaching</h1>
+      <p class="prose-content mt-4">
+        Complete this short intake form so Zeeshan can review your background before your free strategy call. All information should be truthful and accurate.
+      </p>
+
+      <Callout variant="info" class="mt-8">
+        <p class="text-sm text-text-muted">
+          After submitting, you&apos;ll be directed to schedule your free 30-minute strategy call. There is no obligation to enroll in the paid program.
+        </p>
+      </Callout>
+
+      <div class="mt-10">
+        <IntakeForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<!-- Hidden form for Netlify build-time form detection -->
+<form name="intake" data-netlify="true" data-netlify-honeypot="bot-field" hidden>
+  <input type="text" name="fullName" />
+  <input type="email" name="email" />
+  <input type="file" name="resume" />
+</form>

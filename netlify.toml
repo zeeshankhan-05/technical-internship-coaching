@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Netlify Forms — form detection requires the built HTML to contain data-netlify forms
+# Configure form notifications in the Netlify dashboard after deploy.
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404

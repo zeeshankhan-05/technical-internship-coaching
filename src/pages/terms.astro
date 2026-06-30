@@ -1,0 +1,155 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import CTAGroup from '../components/CTAGroup.astro';
+import { siteConfig } from '../config/site';
+
+const description = 'Terms of service for Technical Internship Coaching with Zeeshan Khan.';
+const showEmail = !siteConfig.contactEmail.includes('PLACEHOLDER');
+---
+
+<!-- Terms should be reviewed by a qualified professional before broad commercial launch. -->
+
+<BaseLayout title="Terms of Service" description={description} path="/terms">
+  <section class="section-padding">
+    <div class="container-page max-w-3xl">
+      <Breadcrumbs items={[{ label: 'Terms of Service', href: '/terms' }]} />
+
+      <h1 class="text-heading">Terms of Service</h1>
+      <p class="prose-content mt-4 text-sm text-text-muted">Last updated: June 2026</p>
+
+      <div class="prose-content mt-10">
+        <p>
+          These terms describe the coaching relationship between you and {siteConfig.founderName}, who independently operates {siteConfig.siteName}. By enrolling or participating, you agree to these terms.
+        </p>
+
+        <h2>Independent coaching service</h2>
+        <p>
+          This is a personal coaching service independently operated by {siteConfig.founderName}. It is not an LLC, agency, academy, institute, team, or employer-sponsored program. It is not affiliated with or endorsed by the University of Illinois Urbana-Champaign, Splunk, Cisco, or any other employer mentioned.
+        </p>
+
+        <h2>Eligibility</h2>
+        <p>
+          The program is designed primarily for US-based undergraduate students enrolled at US colleges pursuing technical internships. Participation is subject to fit assessment during the intake and strategy call process.
+        </p>
+
+        <h2>Program scope</h2>
+        <p>
+          The {siteConfig.programName} includes {siteConfig.sessionCount} private {siteConfig.sessionDurationMinutes}-minute coaching sessions, ordinarily delivered over {siteConfig.programDurationWeeks} weeks and completed within {siteConfig.maxCompletionWeeks} calendar weeks. The program focuses on résumé positioning, application strategy, networking guidance, and interview preparation planning.
+        </p>
+
+        <h2>Price and payment</h2>
+        <p>
+          The founding pilot price is ${siteConfig.foundingPrice} for the complete program — not an hourly rate. Payment options include:
+        </p>
+        <ul>
+          <li>Full payment of ${siteConfig.foundingPrice} before the first paid session</li>
+          <li>Payment plan: ${siteConfig.paymentPlanFirst} before Session 1 and ${siteConfig.paymentPlanSecond} before Session 4</li>
+        </ul>
+        <p>Payments are interest-free with no financing charges or late-interest fees.</p>
+
+        <h2>Included services</h2>
+        <ul>
+          <li>{siteConfig.sessionCount} private coaching sessions</li>
+          <li>Up to {siteConfig.resumeReviewRounds} structured résumé-review rounds</li>
+          <li>Personalized recruiting bottleneck diagnosis</li>
+          <li>Application, networking, and interview preparation guidance</li>
+          <li>Brief clarification support between sessions (see below)</li>
+        </ul>
+
+        <h2>Excluded services</h2>
+        <ul>
+          <li>Guaranteed interviews, offers, referrals, compensation, or sponsorship</li>
+          <li>Job applications completed on your behalf</li>
+          <li>Mock interviews, assessment completion, or take-home assignments</li>
+          <li>Immigration, legal, tax, or financial advice</li>
+          <li>Indefinite support until an internship is obtained</li>
+        </ul>
+
+        <h2>Student responsibilities</h2>
+        <p>You agree to:</p>
+        <ul>
+          <li>Commit approximately two to three hours per week</li>
+          <li>Attend scheduled sessions and complete agreed assignments</li>
+          <li>Provide accurate information and truthful résumé content</li>
+          <li>Verify every metric and claim on your résumé</li>
+          <li>Maintain an application tracker and apply consistently when ready</li>
+          <li>Communicate promptly when blocked or unable to attend</li>
+        </ul>
+
+        <h2>Truthful information</h2>
+        <p>
+          All résumé claims must be truthful and defensible. Fabricated experience, projects, metrics, or skills are prohibited. The coach does not apply for roles or complete assessments for clients.
+        </p>
+
+        <h2>Scheduling and missed sessions</h2>
+        <ul>
+          <li>At least 12 hours&apos; notice is requested for ordinary rescheduling</li>
+          <li>One courtesy late-rescheduling exception is available</li>
+          <li>Reasonable flexibility for genuine emergencies</li>
+          <li>A missed session without notice ordinarily counts as an included session</li>
+          <li>If the coach cancels, the session is rescheduled and does not count against you</li>
+        </ul>
+
+        <h2>Between-session support</h2>
+        <p>
+          Brief clarification questions may be sent between sessions, generally consolidated into one message thread per week. Responses are normally provided within two business days. Extensive editing, new résumé-review rounds, urgent interview coaching, and major strategy work occur during scheduled sessions unless separately agreed.
+        </p>
+
+        <h2>Cancellation and refunds</h2>
+        <ul>
+          <li>Full refund before the first paid session and before substantive document work begins</li>
+          <li>Completed sessions and completed review rounds are non-refundable</li>
+          <li>If the engagement ends early, the fair value of genuinely undelivered work is refunded</li>
+          <li>If an included service cannot be delivered, you receive an equivalent replacement or proportional refund</li>
+          <li>No interest or late-payment penalties</li>
+        </ul>
+        <p>These terms summarize refund principles and do not replace professional legal advice.</p>
+
+        <h2>No guaranteed outcomes</h2>
+        <p>
+          Coaching does not guarantee interviews, offers, referrals, compensation, or sponsorship. Results depend on your effort, skills, preparation, eligibility, execution, and market conditions.
+        </p>
+
+        <h2>Not professional advice</h2>
+        <p>
+          Coaching is not immigration, legal, tax, or financial advice. Consult qualified professionals for those matters.
+        </p>
+
+        <h2>AI consent and opt-out</h2>
+        <p>
+          With your consent, limited third-party AI tools may assist with reviewing materials, with identifying information removed where reasonably possible. You may opt out without affecting access or price. Your preference is honored for the duration of the engagement.
+        </p>
+
+        <h2>Privacy</h2>
+        <p>
+          See the <a href="/privacy">Privacy Policy</a> for details on data collection, retention, and deletion.
+        </p>
+
+        <h2>Intellectual property</h2>
+        <p>
+          Coaching materials, templates, and written action points are provided for your personal use during and after the program. You may not redistribute paid materials commercially or present them as your own published work product.
+        </p>
+
+        <h2>Right to end engagement</h2>
+        <p>
+          The coach may end an engagement involving dishonesty, abuse, repeated non-participation, or requests for prohibited assistance (such as applying on your behalf or completing assessments). In such cases, a fair refund for genuinely undelivered work may be provided where appropriate.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          For concerns about these terms or the coaching relationship,
+          {showEmail ? (
+            <> contact <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</>
+          ) : (
+            <> use the contact method provided after launch.</>
+          )}
+        </p>
+      </div>
+
+      <div class="mt-12">
+        <CTAGroup primary={{ label: 'View Program', href: '/program' }} />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

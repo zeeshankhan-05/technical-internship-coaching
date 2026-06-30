@@ -1,0 +1,44 @@
+---
+import { siteConfig } from '../config/site';
+
+interface Props {
+  showPaymentPlan?: boolean;
+}
+
+const { showPaymentPlan = true } = Astro.props;
+---
+
+<div class="card max-w-lg">
+  <p class="text-sm font-medium uppercase tracking-wide text-accent">Founding pilot</p>
+  <p class="mt-2 text-4xl font-semibold text-heading">${siteConfig.foundingPrice}</p>
+  <p class="mt-2 text-text-muted">Complete coaching process — not an hourly rate</p>
+
+  <ul class="mt-6 space-y-3 text-text-muted">
+    <li class="flex gap-2">
+      <span class="text-accent" aria-hidden="true">✓</span>
+      <span>Full payment: ${siteConfig.foundingPrice} before the first paid session</span>
+    </li>
+    {showPaymentPlan && (
+      <li class="flex gap-2">
+        <span class="text-accent" aria-hidden="true">✓</span>
+        <span>Payment plan: ${siteConfig.paymentPlanFirst} before Session 1 and ${siteConfig.paymentPlanSecond} before Session 4</span>
+      </li>
+    )}
+    <li class="flex gap-2">
+      <span class="text-accent" aria-hidden="true">✓</span>
+      <span>Interest-free · No financing charges · No late-interest fees</span>
+    </li>
+    <li class="flex gap-2">
+      <span class="text-accent" aria-hidden="true">✓</span>
+      <span>{siteConfig.sessionCount} private {siteConfig.sessionDurationMinutes}-minute sessions</span>
+    </li>
+  </ul>
+
+  <p class="mt-6 text-sm text-text-muted">
+    The founding price is real and published clearly. It is not a fake crossed-out discount.
+  </p>
+
+  <div class="mt-6">
+    <slot />
+  </div>
+</div>

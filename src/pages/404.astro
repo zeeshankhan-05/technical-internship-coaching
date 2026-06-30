@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CTAGroup from '../components/CTAGroup.astro';
+
+const description = 'Page not found.';
+---
+
+<BaseLayout title="Page Not Found" description={description} noindex={true}>
+  <section class="section-padding">
+    <div class="container-page max-w-xl text-center">
+      <p class="text-6xl font-semibold text-accent" aria-hidden="true">404</p>
+      <h1 class="mt-4 text-heading">Page not found</h1>
+      <p class="mt-4 text-text-muted">
+        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+      </p>
+      <div class="mt-8 flex justify-center">
+        <CTAGroup
+          primary={{ label: 'Return Home', href: '/' }}
+          secondary={{ label: 'Apply for Coaching', href: '/apply', variant: 'secondary' }}
+          align="center"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

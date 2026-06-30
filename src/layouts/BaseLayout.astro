@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+}
+
+import '../styles/global.css';
+import SeoHead from '../components/SeoHead.astro';
+import SkipLink from '../components/SkipLink.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../config/site';
+
+const { title, description, path, noindex } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <SeoHead title={title} description={description} path={path} noindex={noindex} />
+  </head>
+  <body class="min-h-screen flex flex-col">
+    <SkipLink />
+    <Header />
+    <main id="main-content" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+
+    {siteConfig.analyticsEnabled && (
+      <script is:inline data-analytics-placeholder></script>
+    )}
+  </body>
+</html>

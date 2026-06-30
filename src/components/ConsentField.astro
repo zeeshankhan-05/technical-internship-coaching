@@ -1,0 +1,51 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  name: string;
+  required?: boolean;
+  hint?: string;
+}
+
+const { id, label, name, required = false, hint } = Astro.props;
+---
+
+<div class="form-field">
+  <fieldset>
+    <legend class="form-label">
+      {label}
+      {required && <span class="text-red-700" aria-hidden="true"> *</span>}
+      {required && <span class="sr-only">(required)</span>}
+    </legend>
+    {hint && <p class="form-hint mb-3">{hint}</p>}
+    <div class="space-y-3">
+      <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 hover:border-accent/50 has-[:checked]:border-accent has-[:checked]:bg-accent-light/30">
+        <input
+          type="radio"
+          id={`${id}-consent`}
+          name={name}
+          value="consent"
+          required={required}
+          class="mt-1 h-4 w-4 shrink-0 accent-accent"
+        />
+        <span class="text-sm text-text">
+          I consent to limited third-party AI assistance with identifying information removed where reasonably possible.
+        </span>
+      </label>
+      <label class="flex cursor-pointer items-start gap-3 rounded-lg border border-border p-4 hover:border-accent/50 has-[:checked]:border-accent has-[:checked]:bg-accent-light/30">
+        <input
+          type="radio"
+          id={`${id}-opt-out`}
+          name={name}
+          value="opt-out"
+          required={required}
+          class="mt-1 h-4 w-4 shrink-0 accent-accent"
+        />
+        <span class="text-sm text-text">
+          I prefer that my materials not be processed by third-party AI tools.
+        </span>
+      </label>
+    </div>
+    <p id={`${id}-error`} class="form-error hidden" role="alert"></p>
+  </fieldset>
+</div>

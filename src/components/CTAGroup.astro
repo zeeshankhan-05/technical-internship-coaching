@@ -1,0 +1,36 @@
+---
+interface CTA {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary';
+  external?: boolean;
+}
+
+interface Props {
+  primary: CTA;
+  secondary?: CTA;
+  align?: 'left' | 'center';
+}
+
+const { primary, secondary, align = 'left' } = Astro.props;
+const alignClass = align === 'center' ? 'justify-center' : '';
+---
+
+<div class={`flex flex-col gap-3 sm:flex-row sm:items-center ${alignClass}`}>
+  <a
+    href={primary.href}
+    class={`btn ${primary.variant === 'secondary' ? 'btn-secondary' : 'btn-primary'}`}
+    {...(primary.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+  >
+    {primary.label}
+  </a>
+  {secondary && (
+    <a
+      href={secondary.href}
+      class={`btn ${secondary.variant === 'primary' ? 'btn-primary' : 'btn-secondary'}`}
+      {...(secondary.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+    >
+      {secondary.label}
+    </a>
+  )}
+</div>

@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTAGroup from '../../components/CTAGroup.astro';
+import { siteConfig } from '../../config/site';
+
+const description = 'Your intake form has been submitted. Schedule your free strategy call.';
+---
+
+<BaseLayout title="Application Received" description={description} path="/apply/success" noindex={true}>
+  <section class="section-padding">
+    <div class="container-page max-w-2xl text-center">
+      <div class="card mx-auto">
+        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent-light text-2xl text-accent" aria-hidden="true">
+          ✓
+        </div>
+        <h1 class="mt-6 text-heading">Thank you — your intake form was submitted</h1>
+        <p class="mt-4 text-text-muted">
+          Zeeshan will review your information and résumé. The next step is to schedule your free {siteConfig.strategyCallDurationMinutes}-minute strategy call.
+        </p>
+
+        <div class="mt-8 flex justify-center">
+          <CTAGroup
+            primary={{
+              label: 'Book Your Strategy Call',
+              href: siteConfig.calendlyUrl,
+              external: true,
+            }}
+            secondary={{ label: 'Return Home', href: '/', variant: 'secondary' }}
+            align="center"
+          />
+        </div>
+
+        <p class="mt-8 text-sm text-text-muted">
+          There is no obligation to enroll in the paid program. The call will include one to three practical observations when relevant.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

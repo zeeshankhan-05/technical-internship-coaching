@@ -1,0 +1,68 @@
+---
+import { faqs } from '../data/faqs';
+---
+
+<div class="divide-y divide-border rounded-xl border border-border bg-surface">
+  {faqs.map((faq) => (
+    <div class="faq-item">
+      <h3>
+        <button
+          type="button"
+          class="faq-trigger flex w-full items-center justify-between gap-4 px-5 py-4 text-left text-base font-medium text-heading hover:bg-background"
+          aria-expanded="false"
+          aria-controls={`faq-panel-${faq.id}`}
+          id={`faq-button-${faq.id}`}
+        >
+          <span>{faq.question}</span>
+          <span class="faq-icon shrink-0 text-accent" aria-hidden="true">+</span>
+        </button>
+      </h3>
+      <div
+        id={`faq-panel-${faq.id}`}
+        role="region"
+        aria-labelledby={`faq-button-${faq.id}`}
+        class="faq-panel hidden px-5 pb-4"
+        hidden
+      >
+        <p class="text-text-muted">{faq.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  function initFAQAccordion() {
+    const triggers = document.querySelectorAll<HTMLButtonElement>('.faq-trigger');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        const panel = document.getElementById(
+          trigger.getAttribute('aria-controls') ?? ''
+        );
+        const icon = trigger.querySelector('.faq-icon');
+
+        trigger.setAttribute('aria-expanded', String(!expanded));
+
+        if (panel) {
+          panel.hidden = expanded;
+          panel.classList.toggle('hidden', expanded);
+        }
+
+        if (icon) {
+          icon.textContent = expanded ? '+' : '−';
+        }
+      });
+    });
+  }
+
+  initFAQAccordion();
+  document.addEventListener('astro:page-load', initFAQAccordion);
+</script>
+
+<style>
+  .faq-trigger:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: -2px;
+  }
+</style>

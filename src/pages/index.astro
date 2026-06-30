@@ -1,0 +1,211 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CTAGroup from '../components/CTAGroup.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import PricingCard from '../components/PricingCard.astro';
+import Callout from '../components/Callout.astro';
+import Testimonials from '../components/Testimonials.astro';
+import { siteConfig } from '../config/site';
+import {
+  bottlenecks,
+  roleFamilies,
+  processSteps,
+  programIncludes,
+  programExcludes,
+  ethicsPrinciples,
+  strategyCallSteps,
+} from '../data/homepage';
+
+const description =
+  'One-on-one coaching for college students pursuing software engineering, AI, data, and related technical internships. Improve your résumé, projects, application strategy, networking, and preparation.';
+---
+
+<BaseLayout title={siteConfig.siteName} description={description} path="/">
+  <Hero />
+
+  <!-- B. Audience -->
+  <section class="section-padding">
+    <div class="container-page">
+      <SectionHeading
+        title="Built for students pursuing technical internships"
+        subtitle="The initial focus is US-based undergraduate students enrolled at US colleges and seeking their first or next technical internship."
+      />
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {roleFamilies.map((role) => (
+          <div class="rounded-lg border border-border bg-background px-4 py-3 text-sm text-text-muted">
+            {role}
+          </div>
+        ))}
+      </div>
+      <div class="prose-content mt-10 max-w-none">
+        <p>
+          Zeeshan&apos;s strongest experience is in software engineering recruiting. Many application and positioning principles transfer across technical roles. Specialized advanced preparation may require external resources or a subject-matter expert.
+        </p>
+        <Callout variant="info" class="mt-6">
+          <p class="text-sm text-text-muted">
+            <strong class="text-heading">International students studying in the United States may participate.</strong> Sponsorship requirements, work authorization, employer restrictions, location, and market conditions can make recruiting more difficult. The coaching does not include legal or immigration advice.
+          </p>
+        </Callout>
+      </div>
+    </div>
+  </section>
+
+  <!-- C. Common bottlenecks -->
+  <section class="section-padding bg-background">
+    <div class="container-page">
+      <SectionHeading
+        title="Common recruiting bottlenecks"
+        subtitle="Not every student faces the same challenge — but these patterns come up often in technical internship searches."
+      />
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {bottlenecks.map((item) => (
+          <FeatureCard title={item.title} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- D. Program summary -->
+  <section class="section-padding">
+    <div class="container-page">
+      <SectionHeading title={siteConfig.programName} />
+      <p class="prose-content mt-6 max-w-3xl">
+        A structured six-week one-on-one program designed to strengthen how you present your technical experience and create a clearer system for applications, networking, and interview preparation. The program is ordinarily completed within {siteConfig.maxCompletionWeeks} calendar weeks.
+      </p>
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {programIncludes.map((item) => (
+          <li class="flex gap-2 text-sm text-text-muted">
+            <span class="text-accent shrink-0" aria-hidden="true">✓</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+      <div class="mt-10">
+        <CTAGroup primary={{ label: 'See Full Program Details', href: '/program' }} />
+      </div>
+    </div>
+  </section>
+
+  <!-- E. Process -->
+  <section class="section-padding bg-background">
+    <div class="container-page">
+      <SectionHeading title="How the program works" />
+      <div class="mt-10 grid gap-8 md:grid-cols-2">
+        {processSteps.map((step) => (
+          <ProcessStep step={step.step} title={step.title} description={step.description} />
+        ))}
+      </div>
+      <p class="mt-8 text-sm text-text-muted">
+        The order may change based on the student&apos;s needs. Interview preparation may move earlier when an interview is already scheduled.
+      </p>
+    </div>
+  </section>
+
+  <!-- F. Founder -->
+  <section class="section-padding">
+    <div class="container-page">
+      <SectionHeading title="Practical guidance from someone actively navigating technical recruiting" />
+      <div class="prose-content mt-8 max-w-3xl">
+        <p>
+          <strong class="text-heading">{siteConfig.founderName}</strong> is pursuing a B.S. in Computer Science at the University of Illinois Urbana-Champaign and expects to graduate in December 2026. He is currently a Software Engineering Intern at Splunk.
+        </p>
+        <p>
+          His recruiting experience includes four technical-internship offers—from CVS, Cisco, Apex Fintech Solutions, and EnergyCX—interviews with more than 15 companies, an Amazon final round, an Oracle Superday, and more than 300 applications during a recent recruiting cycle. He has also built technical products used by thousands of people.
+        </p>
+        <p>
+          For more than a year, Zeeshan has independently studied technical internship recruiting through his own experience, recruiter conversations, market observation, candidate outcomes, and continued research. He approaches coaching as a knowledgeable peer and disciplined coach—not as a recruiter, hiring manager, senior engineer, or universal technical expert.
+        </p>
+      </div>
+      {!siteConfig.linkedinUrl.includes('PLACEHOLDER') && (
+        <div class="mt-8">
+          <a
+            href={siteConfig.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-secondary"
+          >
+            View LinkedIn profile
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- G. Ethics -->
+  <section class="section-padding bg-background">
+    <div class="container-page">
+      <SectionHeading title="Clear guidance without false promises" />
+      <ul class="mt-8 grid gap-4 sm:grid-cols-2">
+        {ethicsPrinciples.map((principle) => (
+          <li class="flex gap-3 text-text-muted">
+            <span class="text-accent shrink-0" aria-hidden="true">•</span>
+            <span>{principle}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- H. Pricing -->
+  <section class="section-padding">
+    <div class="container-page">
+      <SectionHeading title={`Founding pilot: $${siteConfig.foundingPrice}`} />
+      <p class="prose-content mt-4">
+        The program is sold as a complete coaching process, not as an hourly service.
+      </p>
+      <div class="mt-8">
+        <PricingCard>
+          <CTAGroup primary={{ label: 'Apply for the Founding Pilot', href: '/apply' }} />
+        </PricingCard>
+      </div>
+    </div>
+  </section>
+
+  <!-- I. What is not included -->
+  <section class="section-padding bg-background">
+    <div class="container-page">
+      <SectionHeading title="What is not included" />
+      <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+        {programExcludes.map((item) => (
+          <li class="flex gap-2 text-text-muted">
+            <span class="shrink-0" aria-hidden="true">—</span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- J. Strategy call -->
+  <section class="section-padding">
+    <div class="container-page">
+      <SectionHeading title="Start with a free 30-minute strategy call" />
+      <ol class="mt-8 max-w-2xl list-decimal space-y-3 pl-6 text-text-muted">
+        {strategyCallSteps.map((step) => (
+          <li>{step}</li>
+        ))}
+      </ol>
+      <p class="mt-6 text-text-muted">
+        There is no obligation to enroll and no pressure-based sales process.
+      </p>
+      <div class="mt-8">
+        <CTAGroup primary={{ label: 'Complete the Intake Form', href: '/apply' }} />
+      </div>
+    </div>
+  </section>
+
+  <!-- K. Final CTA -->
+  <section class="section-padding border-t border-border bg-accent-light/30">
+    <div class="container-page text-center">
+      <h2 class="text-heading">Build a clearer, more truthful technical-internship strategy</h2>
+      <div class="mt-8 flex justify-center">
+        <CTAGroup primary={{ label: 'Apply for a Free Strategy Call', href: '/apply' }} align="center" />
+      </div>
+    </div>
+  </section>
+
+  <Testimonials />
+</BaseLayout>

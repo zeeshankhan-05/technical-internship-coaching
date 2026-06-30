@@ -1,0 +1,25 @@
+---
+import { testimonials, testimonialsEnabled } from '../data/testimonials';
+import { siteConfig } from '../config/site';
+
+const enabled = siteConfig.testimonialsEnabled && testimonialsEnabled;
+const permissioned = testimonials.filter((t) => t.permissionGranted);
+---
+
+{enabled && permissioned.length > 0 && (
+  <section class="section-padding">
+    <div class="container-page">
+      <h2 class="text-heading">What students say</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        {permissioned.map((item) => (
+          <blockquote class="card">
+            <p class="text-text-muted">&ldquo;{item.quote}&rdquo;</p>
+            <footer class="mt-4 text-sm font-medium text-heading">
+              — {item.name}{item.role ? `, ${item.role}` : ''}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

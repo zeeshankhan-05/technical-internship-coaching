@@ -1,0 +1,69 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  noindex?: boolean;
+}
+
+import { siteConfig } from '../config/site';
+
+const { title, description, path = '', noindex = false } = Astro.props;
+
+const fullTitle = path === '/' || title === siteConfig.siteName
+  ? siteConfig.siteName
+  : `${title} | ${siteConfig.siteName}`;
+
+const canonicalUrl = new URL(path || '/', siteConfig.siteUrl).href;
+const ogImage = new URL('/favicon.svg', siteConfig.siteUrl).href;
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="generator" content={Astro.generator} />
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+{noindex && <meta name="robots" content="noindex, nofollow" />}
+
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content={siteConfig.siteName} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImage} />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: siteConfig.founderName,
+      url: siteConfig.siteUrl,
+      sameAs: siteConfig.linkedinUrl.includes('PLACEHOLDER') ? undefined : [siteConfig.linkedinUrl],
+      jobTitle: 'Independent Technical Internship Coach',
+      description: siteConfig.supportingStatement,
+    },
+    {
+      '@type': 'Service',
+      name: siteConfig.programName,
+      provider: {
+        '@type': 'Person',
+        name: siteConfig.founderName,
+      },
+      description: siteConfig.supportingStatement,
+      offers: {
+        '@type': 'Offer',
+        price: siteConfig.foundingPrice,
+        priceCurrency: 'USD',
+        description: `Founding pilot coaching program with ${siteConfig.sessionCount} private sessions`,
+      },
+    },
+  ],
+})} />

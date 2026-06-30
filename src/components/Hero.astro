@@ -1,0 +1,38 @@
+---
+import CTAGroup from './CTAGroup.astro';
+import ProcessJourney from './ProcessJourney.astro';
+import { siteConfig } from '../config/site';
+
+interface Props {
+  headline?: string;
+  supporting?: string;
+  trustLine?: string;
+}
+
+const {
+  headline = siteConfig.tagline,
+  supporting = 'Personalized one-on-one coaching for college students pursuing software engineering, AI, data, and related technical internships. Improve how you present your experience, organize your search, approach networking, and prepare for interviews.',
+  trustLine = `Six private sessions · $${siteConfig.foundingPrice} founding pilot · No guaranteed outcomes or inflated claims`,
+} = Astro.props;
+---
+
+<section class="section-padding border-b border-border bg-surface">
+  <div class="container-page">
+    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <h1 class="text-heading">{headline}</h1>
+        <p class="mt-6 text-lg text-text-muted">{supporting}</p>
+        <div class="mt-8">
+          <CTAGroup
+            primary={{ label: 'Apply for a Free Strategy Call', href: '/apply' }}
+            secondary={{ label: 'View the Program', href: '/program', variant: 'secondary' }}
+          />
+        </div>
+        <p class="mt-6 text-sm text-text-muted">{trustLine}</p>
+      </div>
+      <div class="lg:pl-4">
+        <ProcessJourney />
+      </div>
+    </div>
+  </div>
+</section>
