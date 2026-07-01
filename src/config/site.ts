@@ -9,7 +9,7 @@ export const siteConfig = {
   founderName: 'Zeeshan Khan',
   founderTitle: 'Software Engineering Intern at Splunk',
   tagline: 'Get honest resume feedback before your next application.',
-  heroEyebrow: 'Free coaching call for undergraduates',
+  heroEyebrow: 'Free coaching call for students',
   heroSupporting:
     'Book a free 20-minute call. I will review your resume and give you actionable feedback—completely free, with no obligation to enroll.',
   supportingStatement:

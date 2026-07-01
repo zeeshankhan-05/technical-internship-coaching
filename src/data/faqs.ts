@@ -16,18 +16,18 @@ export const faqs: FAQ[] = [
     id: 'who-should-book',
     question: 'Who should book a free call?',
     answer:
-      'Undergraduate students at US colleges who are preparing for software engineering, AI, data, or related technical internships. You do not need to be ready to enroll in paid coaching—a current resume and real questions about your search are enough.',
+      'Students at US colleges who are preparing for software engineering, AI, data, or related technical internships. You do not need to be ready to enroll in paid coaching—a current resume and real questions about your search are enough.',
   },
   {
     id: 'program-includes',
     question: `What is included in the $${siteConfig.foundingPrice} program?`,
-    answer: `The founding pilot includes ${siteConfig.sessionCount} private coaching sessions over about ${siteConfig.programDurationWeeks} weeks, up to ${siteConfig.resumeReviewRounds} structured resume-review rounds, application and networking strategy, and interview preparation planning. How much you get out of it is largely dependent on the effort you put in between sessions.`,
+    answer: `The founding pilot includes ${siteConfig.sessionCount} private coaching sessions over about ${siteConfig.programDurationWeeks} weeks, thorough resume review, LinkedIn and application strategy, referral and networking outreach, and interview preparation planning. How much you get out of it is largely dependent on the effort you put in between sessions.`,
   },
   {
     id: 'who-is-it-for',
     question: 'Who is the paid program for?',
     answer:
-      'The program is designed for US-based undergraduate students enrolled at US colleges who are pursuing their first or next technical internship in software engineering, AI, data, or related fields. You should be willing to commit two to three hours per week and revise your materials actively.',
+      'The program is designed for US-based students enrolled at US colleges who are pursuing their first or next technical internship in software engineering, AI, data, or related fields. You should be willing to commit two to three hours per week and revise your materials actively.',
   },
   {
     id: 'which-roles',
@@ -72,7 +72,8 @@ export const faqs: FAQ[] = [
   {
     id: 'resume-review',
     question: 'How does resume review work?',
-    answer: `The program includes up to ${siteConfig.resumeReviewRounds} structured resume-review rounds across Sessions 2 and 3. Reviews focus on structure, positioning, truthful metrics, and alignment with target roles. You are responsible for implementing revisions.`,
+    answer:
+      'The program includes thorough resume review focused on structure, positioning, truthful metrics, and alignment with target roles. Reviews are woven into Sessions 2 and 3 rather than capped at a fixed number of rounds. You are responsible for implementing revisions.',
   },
   {
     id: 'write-resume',
@@ -145,18 +146,12 @@ export const faqs: FAQ[] = [
     answer:
       'Session 6 includes a progress review, next bottleneck identification, and a post-program plan. The program is designed to leave you with clearer materials, a focused application system, and a continued preparation roadmap.',
   },
-  {
-    id: 'graduate-students',
-    question: 'Can graduate students or early-career candidates participate?',
-    answer:
-      'The initial focus is undergraduate students at US colleges. Graduate students or early-career candidates may inquire through the application form; fit depends on recruiting goals, experience level, and program scope.',
-  },
 ];
 
 export const faqGroups = [
   {
     title: 'Eligibility and fit',
-    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international', 'graduate-students'],
+    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international'],
   },
   {
     title: 'Program and coaching',

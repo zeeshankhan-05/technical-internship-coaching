@@ -7,7 +7,7 @@ export const stuckSection = {
   eyebrow: 'Does this sound familiar?',
   title: 'You know you are capable. But you are stuck.',
   intro:
-    'You are an undergraduate pursuing a technical internship. You have projects, coursework, or some experience — but your search still feels harder than it should.',
+    'You are a student pursuing a technical internship. You have projects, coursework, or some experience — but your search still feels harder than it should.',
   painPoints: [
     {
       text: 'You apply to roles and ',
@@ -127,9 +127,9 @@ export const homepageProcessStages = [
 
 export const programHighlights = [
   'Six private one-on-one coaching sessions',
-  'Up to three structured resume-review rounds',
-  'Personalized bottleneck diagnosis',
-  'Application and networking strategy',
+  'Thorough resume review',
+  'LinkedIn and application strategy',
+  'Referral and networking outreach',
   'Behavioral and project communication prep',
   'Personalized technical-interview preparation plan',
 ];

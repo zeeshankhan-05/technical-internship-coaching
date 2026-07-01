@@ -82,7 +82,7 @@ export const programSessions: ProgramSession[] = [
 ];
 
 export const suitableStudentProfile = [
-  'US-based undergraduate students enrolled at US colleges',
+  'US-based students enrolled at US colleges',
   'Seeking a first or next technical internship',
   'Pursuing software engineering, AI, data, or related technical roles',
   'Willing to commit two to three hours per week and complete assignments',
@@ -90,7 +90,7 @@ export const suitableStudentProfile = [
 ];
 
 export const qualificationRequirements = [
-  'Currently enrolled as an undergraduate at a US college or university',
+  'Currently enrolled as a student at a US college or university',
   'Actively preparing for or participating in a technical internship recruiting cycle',
   'Has a current resume and at least some projects, coursework, or prior experience to work with',
   'Can attend six scheduled private sessions within the completion window',
@@ -100,7 +100,7 @@ export const qualificationRequirements = [
 
 export const includedServices = [
   `${siteConfig.sessionCount} private coaching sessions throughout the program`,
-  `Up to ${siteConfig.resumeReviewRounds} structured resume-review rounds`,
+  'Thorough resume review and revision guidance',
   'Personalized recruiting bottleneck diagnosis',
   'Project and experience positioning guidance',
   'LinkedIn and portfolio recommendations',
@@ -115,7 +115,7 @@ export const includedServices = [
 
 export const excludedServices = [
   'Guaranteed interviews, offers, referrals, compensation, or sponsorship',
-  'Unlimited messaging or resume revisions beyond included rounds',
+  'Unlimited messaging or open-ended resume revisions beyond what is included in the program',
   'Job applications completed on the client\'s behalf',
   'Standard mock interviews',
   'Completion of online assessments or take-home assignments',
@@ -138,7 +138,7 @@ export const studentResponsibilities = [
 ];
 
 export const betweenSessionSupport =
-  'Clients may send brief clarification questions between sessions. Questions should generally be consolidated into one message thread per week. Responses are normally provided within two business days. Extensive editing, new resume-review rounds, urgent interview coaching, and major strategy work must occur during scheduled sessions unless separately agreed.';
+  'Clients may send brief clarification questions between sessions. Questions should generally be consolidated into one message thread per week. Responses are normally provided within two business days. Extensive editing, major resume work, urgent interview coaching, and major strategy work must occur during scheduled sessions unless separately agreed.';
 
 export const reschedulingPolicy = [
   'At least 12 hours\' notice is requested for ordinary rescheduling.',
