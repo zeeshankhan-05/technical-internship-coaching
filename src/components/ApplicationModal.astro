@@ -1,0 +1,84 @@
+---
+import IntakeForm from './IntakeForm.astro';
+import { siteConfig } from '../config/site';
+---
+
+<div
+  id="application-modal"
+  class="modal-backdrop hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="application-modal-title"
+  aria-hidden="true"
+>
+  <div class="modal-panel">
+    <button
+      type="button"
+      class="btn btn-ghost absolute right-4 top-4 min-h-10 min-w-10 rounded-full p-2 text-2xl leading-none"
+      data-close-application
+      aria-label="Close application form"
+    >
+      ×
+    </button>
+
+    <h2 id="application-modal-title" class="text-2xl text-heading">
+      {siteConfig.applicationTitle}
+    </h2>
+    <p class="mt-3 text-sm text-text-muted">{siteConfig.applicationSubtitle}</p>
+
+    <div class="mt-8">
+      <IntakeForm formId="intake-form-modal" />
+    </div>
+  </div>
+</div>
+
+<script>
+  function initApplicationModal() {
+    const modal = document.getElementById('application-modal');
+    if (!modal || modal.dataset.bound) return;
+    modal.dataset.bound = 'true';
+
+    const openButtons = document.querySelectorAll('[data-open-application]');
+    const closeButtons = modal.querySelectorAll('[data-close-application]');
+
+    const openModal = () => {
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const firstInput = modal.querySelector<HTMLElement>('input:not([type="hidden"]), select, textarea');
+      firstInput?.focus();
+    };
+
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal();
+      });
+    });
+
+    closeButtons.forEach((button) => {
+      button.addEventListener('click', closeModal);
+    });
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+
+    window.addEventListener('open-application-modal', openModal);
+  }
+
+  initApplicationModal();
+  document.addEventListener('astro:page-load', initApplicationModal);
+</script>

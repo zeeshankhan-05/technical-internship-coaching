@@ -1,36 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import FAQAccordion from '../components/FAQAccordion.astro';
-import CTAGroup from '../components/CTAGroup.astro';
-
-const description =
-  'Answers to common questions about technical internship coaching — program scope, pricing, policies, and eligibility.';
+const description = 'Redirecting.';
 ---
 
-<BaseLayout title="FAQ" description={description} path="/faq">
-  <section class="section-padding">
-    <div class="container-page">
-      <Breadcrumbs items={[{ label: 'FAQ', href: '/faq' }]} />
-
-      <h1 class="text-heading">Frequently asked questions</h1>
-      <p class="prose-content mt-4 max-w-3xl">
-        Clear answers about the coaching program, policies, and what to expect. For details on scope and terms, see the <a href="/program">Program</a> and <a href="/terms">Terms</a> pages.
-      </p>
-
-      <div class="mt-10">
-        <FAQAccordion />
-      </div>
-
-      <div class="mt-12">
-        <p class="text-text-muted">Still have questions?</p>
-        <div class="mt-4">
-          <CTAGroup
-            primary={{ label: 'Complete the Intake Form', href: '/apply' }}
-            secondary={{ label: 'Book a Free Strategy Call', href: '/book', variant: 'secondary' }}
-          />
-        </div>
-      </div>
-    </div>
-  </section>
+<BaseLayout title="FAQ" description={description} path="/faq" noindex={true}>
+  <section class="section-padding"><div class="container-narrow text-center"><a href="/#faq" class="btn btn-accent no-underline">View FAQ</a></div></section>
 </BaseLayout>
+<script is:inline>window.location.replace('/#faq');</script>

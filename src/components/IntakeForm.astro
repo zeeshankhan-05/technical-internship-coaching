@@ -2,324 +2,283 @@
 import FormField from './FormField.astro';
 import ConsentField from './ConsentField.astro';
 import { siteConfig } from '../config/site';
+import { challengeOptions } from '../data/homepage';
+
+interface Props {
+  formId?: string;
+}
+
+const { formId = 'intake-form-inline' } = Astro.props;
+const id = (name: string) => `${formId}-${name}`;
 
 const resumeHint = `PDF or DOCX, max ${siteConfig.resumeMaxSizeBytes / (1024 * 1024)} MB`;
 const acceptTypes = siteConfig.resumeAcceptedExtensions.join(',');
+
+const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? '';
+const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? '';
+const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake` : '';
 ---
 
-<form
-  name="intake"
-  method="POST"
-  action="/apply/success"
-  enctype="multipart/form-data"
-  data-netlify="true"
-  data-netlify-honeypot="bot-field"
-  id="intake-form"
-  class="space-y-6"
-  novalidate
->
-  <input type="hidden" name="form-name" value="intake" />
-
-  <!-- Honeypot -->
+<form id={formId} class="space-y-6" novalidate data-intake-form>
   <p class="hidden" aria-hidden="true">
     <label>Don&apos;t fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
   </p>
 
-  <fieldset class="space-y-6">
-    <legend class="text-lg font-semibold text-heading">Basic information</legend>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="full-name" label="Full name" name="fullName" required />
-      <FormField id="email" label="Email" name="email" type="email" required />
+  <fieldset class="space-y-5">
+    <div class="grid gap-5 sm:grid-cols-2">
+      <FormField id={id('full-name')} label="Full name" name="fullName" required />
+      <FormField id={id('email')} label="Email" name="email" type="email" required />
     </div>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="school" label="School" name="school" required />
-      <FormField id="degree-major" label="Degree or major" name="degreeMajor" required />
+    <FormField id={id('school-major')} label="School and major" name="schoolMajor" required placeholder="e.g. UIUC — Computer Science" />
+    <div class="grid gap-5 sm:grid-cols-2">
+      <FormField id={id('graduation-date')} label="Expected graduation" name="graduationDate" type="month" required hint="Month and year" />
+      <FormField id={id('target-role')} label="Target role or role family" name="targetRole" required placeholder="e.g. software engineering intern" />
     </div>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="graduation-date" label="Expected graduation date" name="graduationDate" type="date" required />
-      <FormField
-        id="academic-year"
-        label="Current academic year"
-        name="academicYear"
-        as="select"
-        required
-        options={[
-          { value: '', label: 'Select…' },
-          { value: 'Freshman', label: 'Freshman' },
-          { value: 'Sophomore', label: 'Sophomore' },
-          { value: 'Junior', label: 'Junior' },
-          { value: 'Senior', label: 'Senior' },
-          { value: 'Other', label: 'Other' },
-        ]}
-      />
-    </div>
-
-    <FormField id="timezone" label="Time zone" name="timezone" required placeholder="e.g. US/Central" />
-  </fieldset>
-
-  <fieldset class="space-y-6">
-    <legend class="text-lg font-semibold text-heading">Recruiting goals</legend>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="target-role" label="Target role or role family" name="targetRole" required />
-      <FormField id="recruiting-season" label="Recruiting season" name="recruitingSeason" required placeholder="e.g. Summer 2026" />
-    </div>
-
-    <FormField id="preferred-locations" label="Preferred locations" name="preferredLocations" required placeholder="e.g. Remote, Chicago, Bay Area" />
-
+    <FormField id={id('recruiting-season')} label="Recruiting season" name="recruitingSeason" required placeholder="e.g. Summer 2026" />
     <FormField
-      id="work-authorization"
-      label="Work authorization or sponsorship constraints"
-      name="workAuthorization"
+      id={id('biggest-challenge')}
+      label="What is your biggest challenge right now?"
+      name="biggestChallenge"
       as="select"
       required
+      options={challengeOptions}
+    />
+    <FormField
+      id={id('work-authorization')}
+      label="Sponsorship requirement, if relevant"
+      name="workAuthorization"
+      as="select"
       options={[
-        { value: '', label: 'Select…' },
+        { value: '', label: 'Select if applicable…' },
         { value: 'US citizen or permanent resident', label: 'US citizen or permanent resident' },
         { value: 'F-1 / OPT eligible', label: 'F-1 / OPT eligible' },
         { value: 'Requires sponsorship', label: 'Requires sponsorship' },
         { value: 'Prefer to discuss privately', label: 'Prefer to discuss privately' },
-        { value: 'Other', label: 'Other' },
       ]}
     />
   </fieldset>
 
-  <fieldset class="space-y-6">
-    <legend class="text-lg font-semibold text-heading">Links and résumé</legend>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="linkedin" label="LinkedIn URL" name="linkedinUrl" type="url" required placeholder="https://linkedin.com/in/..." />
-      <FormField id="github" label="GitHub or portfolio URL" name="portfolioUrl" type="url" placeholder="https://github.com/..." />
-    </div>
-
+  <fieldset class="space-y-5 border-t border-border pt-6">
+    <legend class="sr-only">Additional details</legend>
+    <FormField id={id('linkedin')} label="LinkedIn (optional)" name="linkedinUrl" type="url" placeholder="https://linkedin.com/in/..." />
     <FormField
-      id="resume"
-      label="Résumé upload"
+      id={id('resume')}
+      label="Resume"
       name="resume"
       type="file"
-      required
       accept={acceptTypes}
       hint={resumeHint}
-    />
-  </fieldset>
-
-  <fieldset class="space-y-6">
-    <legend class="text-lg font-semibold text-heading">Current recruiting activity</legend>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="applications-submitted" label="Approximate applications submitted (current résumé)" name="applicationsSubmitted" type="number" required placeholder="e.g. 50" />
-      <FormField id="recruiter-responses" label="Approximate recruiter responses" name="recruiterResponses" type="number" required placeholder="e.g. 5" />
-    </div>
-
-    <div class="grid gap-6 sm:grid-cols-2">
-      <FormField id="online-assessments" label="Approximate online assessments" name="onlineAssessments" type="number" required placeholder="e.g. 3" />
-      <FormField id="interviews" label="Approximate interviews" name="interviews" type="number" required placeholder="e.g. 2" />
-    </div>
-
-    <FormField
-      id="experience"
-      label="Previous internship, research, project, or technical experience"
-      name="experience"
-      as="textarea"
       required
-      rows={5}
     />
 
-    <FormField
-      id="biggest-challenge"
-      label="Current biggest challenge"
-      name="biggestChallenge"
-      as="textarea"
-      required
-      rows={4}
-    />
-
-    <FormField
-      id="support-desired"
-      label="Type of support desired"
-      name="supportDesired"
-      as="textarea"
-      required
-      rows={3}
-    />
-
-    <FormField
-      id="weekly-time"
-      label="Weekly time available (hours)"
-      name="weeklyTimeAvailable"
-      as="select"
-      required
-      options={[
-        { value: '', label: 'Select…' },
-        { value: '1-2 hours', label: '1–2 hours' },
-        { value: '2-3 hours', label: '2–3 hours' },
-        { value: '3-5 hours', label: '3–5 hours' },
-        { value: '5+ hours', label: '5+ hours' },
-      ]}
-    />
-  </fieldset>
-
-  <fieldset class="space-y-6">
-    <legend class="text-lg font-semibold text-heading">Consent</legend>
-
-    <ConsentField
-      id="ai-processing"
-      label="AI processing preference"
-      name="aiProcessing"
-      required
-      hint="Choosing not to use third-party AI will not reduce access to coaching or change the price."
-    />
-
-    <div class="form-field">
-      <label class="flex cursor-pointer items-start gap-3">
-        <input
-          type="checkbox"
-          id="truthful-confirmation"
-          name="truthfulConfirmation"
-          value="confirmed"
-          required
-          class="mt-1 h-4 w-4 shrink-0 accent-accent"
-        />
-        <span class="text-sm text-text">
-          I confirm that the information I submit is truthful and accurate to the best of my knowledge.
-          <span class="text-red-700" aria-hidden="true"> *</span>
-        </span>
-      </label>
-      <p id="truthful-confirmation-error" class="form-error hidden" role="alert"></p>
-    </div>
-
-    <div class="form-field">
-      <label class="flex cursor-pointer items-start gap-3">
-        <input
-          type="checkbox"
-          id="privacy-consent"
-          name="privacyConsent"
-          value="consented"
-          required
-          class="mt-1 h-4 w-4 shrink-0 accent-accent"
-        />
-        <span class="text-sm text-text">
-          I have read the <a href="/privacy" class="no-underline">Privacy Policy</a> and consent to the collection and use of my information as described.
-          <span class="text-red-700" aria-hidden="true"> *</span>
-        </span>
-      </label>
-      <p id="privacy-consent-error" class="form-error hidden" role="alert"></p>
+    <div id={id('ai-consent-section')}>
+      <ConsentField
+        id={id('ai-processing')}
+        label="AI processing preference"
+        name="aiProcessing"
+        required
+        hint="Choose whether third-party AI tools may assist with resume review."
+      />
     </div>
   </fieldset>
 
-  <div id="form-status" class="hidden rounded-lg border p-4" role="alert"></div>
+  <div class="form-field border-t border-border pt-6">
+    <label class="flex cursor-pointer items-start gap-3">
+      <input type="checkbox" id={id('privacy-consent')} name="privacyConsent" value="consented" required class="mt-1 h-4 w-4 accent-accent" />
+      <span class="text-sm text-text-muted">
+        I have read the <a href="/privacy" class="text-accent no-underline">Privacy Policy</a> and consent to the collection of my information.
+        <span class="form-required"> *</span>
+      </span>
+    </label>
+    <p id={id('privacy-consent-error')} class="form-error hidden" role="alert"></p>
+  </div>
 
-  <button type="submit" class="btn btn-primary w-full sm:w-auto">
-    Submit intake form
+  <div id={id('form-status')} class="hidden rounded-lg border p-4" role="alert"></div>
+
+  <button type="submit" class="btn btn-primary w-full sm:w-auto" id={id('submit-button')}>
+    {siteConfig.cta.submit}
   </button>
 </form>
 
-<script define:vars={{ maxSize: siteConfig.resumeMaxSizeBytes, acceptedExts: siteConfig.resumeAcceptedExtensions }}>
-  function initIntakeForm() {
-    const form = document.getElementById('intake-form');
-    if (!form) return;
+<script define:vars={{ maxSize: siteConfig.resumeMaxSizeBytes, acceptedExts: siteConfig.resumeAcceptedExtensions, intakeSubmitUrl, supabaseAnonKey }}>
+  function showFieldError(form, idSuffix, message) {
+    const err = form.querySelector(`[id$="-${idSuffix}-error"]`);
+    if (err) {
+      err.textContent = message;
+      err.classList.remove('hidden');
+    }
+  }
 
-    form.addEventListener('submit', (e) => {
-      let valid = true;
+  function validateIntakeForm(form) {
+    let valid = true;
 
-      const clearErrors = () => {
-        form.querySelectorAll('[aria-invalid="true"]').forEach((el) => {
-          el.removeAttribute('aria-invalid');
-        });
-        form.querySelectorAll('.form-error').forEach((el) => {
-          el.classList.add('hidden');
-          el.textContent = '';
-        });
-      };
+    form.querySelectorAll('[aria-invalid="true"]').forEach((el) => el.removeAttribute('aria-invalid'));
+    form.querySelectorAll('.form-error').forEach((el) => {
+      el.classList.add('hidden');
+      el.textContent = '';
+    });
 
-      const showError = (fieldId, message) => {
-        const field = document.getElementById(fieldId);
-        const errorEl = document.getElementById(`${fieldId}-error`);
-        if (field) {
-          field.setAttribute('aria-invalid', 'true');
-        }
-        if (errorEl) {
-          errorEl.textContent = message;
-          errorEl.classList.remove('hidden');
-        }
+    const requiredFields = [
+      { name: 'fullName', idSuffix: 'full-name', message: 'Please enter your full name.' },
+      { name: 'schoolMajor', idSuffix: 'school-major', message: 'Please enter your school and major.' },
+      { name: 'graduationDate', idSuffix: 'graduation-date', message: 'Please select your expected graduation date.' },
+      { name: 'targetRole', idSuffix: 'target-role', message: 'Please enter your target role.' },
+      { name: 'recruitingSeason', idSuffix: 'recruiting-season', message: 'Please enter your recruiting season.' },
+    ];
+
+    for (const field of requiredFields) {
+      const input = form.querySelector(`[name="${field.name}"]`);
+      const value = input?.value?.trim() ?? '';
+      if (!value) {
         valid = false;
-      };
-
-      clearErrors();
-
-      const email = /** @type {HTMLInputElement | null} */ (document.getElementById('email'));
-      if (email && email.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
-        showError('email', 'Please enter a valid email address.');
+        input?.setAttribute('aria-invalid', 'true');
+        showFieldError(form, field.idSuffix, field.message);
       }
+    }
 
-      const linkedin = /** @type {HTMLInputElement | null} */ (document.getElementById('linkedin'));
-      if (linkedin && linkedin.value && !/^https?:\/\/.+/i.test(linkedin.value)) {
-        showError('linkedin', 'Please enter a valid URL starting with http:// or https://.');
-      }
+    const email = form.querySelector('input[name="email"]');
+    const emailValue = email?.value?.trim() ?? '';
+    if (!emailValue) {
+      valid = false;
+      email?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'email', 'Please enter your email.');
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
+      valid = false;
+      email?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'email', 'Please enter a valid email.');
+    }
 
-      const portfolio = /** @type {HTMLInputElement | null} */ (document.getElementById('github'));
-      if (portfolio && portfolio.value && !/^https?:\/\/.+/i.test(portfolio.value)) {
-        showError('github', 'Please enter a valid URL starting with http:// or https://.');
-      }
+    const biggestChallenge = form.querySelector('select[name="biggestChallenge"]');
+    if (!biggestChallenge?.value) {
+      valid = false;
+      biggestChallenge?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'biggest-challenge', 'Please select your biggest challenge.');
+    }
 
-      const resume = /** @type {HTMLInputElement | null} */ (document.getElementById('resume'));
-      if (resume && resume.files && resume.files.length > 0) {
-        const file = resume.files[0];
-        const ext = '.' + file.name.split('.').pop()?.toLowerCase();
-        if (!acceptedExts.includes(ext)) {
-          showError('resume', 'Please upload a PDF or DOCX file.');
-        } else if (file.size > maxSize) {
-          showError('resume', `File must be under ${maxSize / (1024 * 1024)} MB.`);
-        }
-      } else if (resume && resume.required) {
-        showError('resume', 'Please upload your résumé.');
-      }
+    const linkedin = form.querySelector('input[name="linkedinUrl"]');
+    if (linkedin?.value && !/^https?:\/\/.+/i.test(linkedin.value)) {
+      valid = false;
+      linkedin.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'linkedin', 'Please enter a valid URL starting with http:// or https://.');
+    }
 
-      const aiSelected = form.querySelector('input[name="aiProcessing"]:checked');
-      if (!aiSelected) {
-        const errorEl = document.getElementById('ai-processing-error');
-        if (errorEl) {
-          errorEl.textContent = 'Please select an AI processing preference.';
-          errorEl.classList.remove('hidden');
-        }
+    const resume = form.querySelector('input[name="resume"]');
+    const resumeFile = resume?.files?.[0];
+    if (!resumeFile) {
+      valid = false;
+      resume?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'resume', 'Please upload your resume.');
+    } else {
+      const ext = '.' + resumeFile.name.split('.').pop()?.toLowerCase();
+      if (!acceptedExts.includes(ext) || resumeFile.size > maxSize) {
         valid = false;
+        resume?.setAttribute('aria-invalid', 'true');
+        showFieldError(form, 'resume', 'Please upload a PDF or DOCX under 5 MB.');
       }
+    }
 
-      const truthful = /** @type {HTMLInputElement | null} */ (document.getElementById('truthful-confirmation'));
-      if (truthful && !truthful.checked) {
-        const errorEl = document.getElementById('truthful-confirmation-error');
-        if (errorEl) {
-          errorEl.textContent = 'Please confirm your information is truthful.';
-          errorEl.classList.remove('hidden');
-        }
-        valid = false;
-      }
+    if (!form.querySelector('input[name="aiProcessing"]:checked')) {
+      valid = false;
+      const aiRadio = form.querySelector('input[name="aiProcessing"]');
+      aiRadio?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'ai-processing', 'Please choose an AI processing preference.');
+    }
 
-      const privacy = /** @type {HTMLInputElement | null} */ (document.getElementById('privacy-consent'));
-      if (privacy && !privacy.checked) {
-        const errorEl = document.getElementById('privacy-consent-error');
-        if (errorEl) {
-          errorEl.textContent = 'Please consent to the privacy policy.';
-          errorEl.classList.remove('hidden');
-        }
-        valid = false;
-      }
+    const privacy = form.querySelector('input[name="privacyConsent"]');
+    if (privacy && !privacy.checked) {
+      valid = false;
+      privacy.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'privacy-consent', 'Please consent to the privacy policy.');
+    }
 
-      if (!valid) {
-        e.preventDefault();
-        const status = document.getElementById('form-status');
+    return { valid, privacy };
+  }
+
+  function initIntakeForms() {
+    document.querySelectorAll('[data-intake-form]').forEach((formEl) => {
+      const form = formEl;
+      if (form.dataset.bound) return;
+      form.dataset.bound = 'true';
+
+      const submitButton = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('[id$="-form-status"]');
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
         if (status) {
-          status.className = 'rounded-lg border border-red-300 bg-red-50 p-4 text-red-800';
-          status.textContent = 'Please fix the errors below before submitting.';
-          status.classList.remove('hidden');
+          status.classList.add('hidden');
+          status.textContent = '';
         }
-      }
+
+        const { valid, privacy } = validateIntakeForm(form);
+
+        if (!valid) {
+          if (status) {
+            status.className = 'alert-error';
+            status.textContent = 'Please complete all required fields below.';
+            status.classList.remove('hidden');
+          }
+          const firstInvalid = form.querySelector('[aria-invalid="true"]');
+          firstInvalid?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (firstInvalid instanceof HTMLElement) {
+            firstInvalid.focus({ preventScroll: true });
+          }
+          return;
+        }
+
+        if (!intakeSubmitUrl || !supabaseAnonKey) {
+          if (status) {
+            status.className = 'alert-error';
+            status.textContent = 'Form storage is not configured yet. Please try again later.';
+            status.classList.remove('hidden');
+          }
+          return;
+        }
+
+        const formData = new FormData(form);
+        if (privacy?.checked) {
+          formData.set('privacyConsent', 'consented');
+        }
+
+        submitButton?.setAttribute('disabled', 'true');
+        submitButton?.classList.add('opacity-70');
+
+        try {
+          const response = await fetch(intakeSubmitUrl, {
+            method: 'POST',
+            headers: {
+              apikey: supabaseAnonKey,
+              Authorization: `Bearer ${supabaseAnonKey}`,
+            },
+            body: formData,
+          });
+
+          if (!response.ok) {
+            const payload = await response.json().catch(() => ({}));
+            throw new Error(payload.error || 'Submission failed');
+          }
+
+          sessionStorage.setItem('showSchedule', '1');
+          document.getElementById('application-modal')?.classList.add('hidden');
+          document.body.style.overflow = '';
+          window.location.href = '/#schedule';
+        } catch (error) {
+          if (status) {
+            status.className = 'alert-error';
+            status.textContent = error instanceof Error
+              ? error.message
+              : 'Something went wrong. Please try again.';
+            status.classList.remove('hidden');
+          }
+        } finally {
+          submitButton?.removeAttribute('disabled');
+          submitButton?.classList.remove('opacity-70');
+        }
+      });
     });
   }
 
-  initIntakeForm();
-  document.addEventListener('astro:page-load', initIntakeForm);
+  initIntakeForms();
+  document.addEventListener('astro:page-load', initIntakeForms);
 </script>

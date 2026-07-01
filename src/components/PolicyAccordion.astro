@@ -1,0 +1,49 @@
+---
+import { excludedServices, reschedulingPolicy, refundPrinciples, aiPolicy, betweenSessionSupport } from '../data/program';
+import FAQAccordion from './FAQAccordion.astro';
+
+const policySections = [
+  {
+    id: 'excluded',
+    question: 'What is not included',
+    answer: excludedServices.map((item) => `• ${item}`).join('\n'),
+  },
+  {
+    id: 'between-sessions',
+    question: 'Between-session support',
+    answer: betweenSessionSupport,
+  },
+  {
+    id: 'rescheduling',
+    question: 'Rescheduling policy',
+    answer: reschedulingPolicy.join('\n'),
+  },
+  {
+    id: 'refunds',
+    question: 'Refund principles',
+    answer: refundPrinciples.join('\n'),
+  },
+  {
+    id: 'ai',
+    question: 'AI processing policy',
+    answer: aiPolicy.join('\n'),
+  },
+  {
+    id: 'guarantees',
+    question: 'No guaranteed outcomes',
+    answer:
+      'Coaching helps you present your experience more clearly and build a structured recruiting approach. It does not guarantee interviews, offers, referrals, compensation, or sponsorship.',
+  },
+].map((item) => ({
+  ...item,
+  answer: item.answer.replace(/\n/g, ' '),
+}));
+---
+
+<div>
+  <h2 class="text-heading">Policies and important details</h2>
+  <p class="mt-2 text-text-muted">Full transparency — expand any section for details.</p>
+  <div class="mt-6">
+    <FAQAccordion faqs={policySections} />
+  </div>
+</div>

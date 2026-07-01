@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import CTAGroup from '../components/CTAGroup.astro';
+import BookButton from '../components/BookButton.astro';
 
 const description = 'Page not found.';
 ---
@@ -8,17 +8,14 @@ const description = 'Page not found.';
 <BaseLayout title="Page Not Found" description={description} noindex={true}>
   <section class="section-padding">
     <div class="container-page max-w-xl text-center">
-      <p class="text-6xl font-semibold text-accent" aria-hidden="true">404</p>
+      <p class="text-6xl font-bold text-accent" aria-hidden="true">404</p>
       <h1 class="mt-4 text-heading">Page not found</h1>
       <p class="mt-4 text-text-muted">
-        The page you&apos;re looking for doesn&apos;t exist or has been moved.
+        The page you&apos;re looking for doesn&apos;t exist. Everything lives on the homepage now.
       </p>
-      <div class="mt-8 flex justify-center">
-        <CTAGroup
-          primary={{ label: 'Return Home', href: '/' }}
-          secondary={{ label: 'Apply for Coaching', href: '/apply', variant: 'secondary' }}
-          align="center"
-        />
+      <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <BookButton openModal={false} href="/" label="Back to homepage" variant="secondary" />
+        <BookButton openModal={false} href="/#apply" label="Apply for free call" variant="accent" />
       </div>
     </div>
   </section>

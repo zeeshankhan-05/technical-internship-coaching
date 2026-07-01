@@ -4,30 +4,37 @@ interface Props {
   description: string;
   path?: string;
   noindex?: boolean;
+  minimal?: boolean;
 }
 
 import '../styles/global.css';
 import SeoHead from '../components/SeoHead.astro';
 import SkipLink from '../components/SkipLink.astro';
 import Header from '../components/Header.astro';
+import MinimalHeader from '../components/MinimalHeader.astro';
 import Footer from '../components/Footer.astro';
 import { siteConfig } from '../config/site';
 
-const { title, description, path, noindex } = Astro.props;
+const { title, description, path, noindex, minimal = false } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="dark">
   <head>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#0c1220" />
     <SeoHead title={title} description={description} path={path} noindex={noindex} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
   <body class="min-h-screen flex flex-col">
     <SkipLink />
-    <Header />
+    {minimal ? <MinimalHeader /> : <Header />}
     <main id="main-content" class="flex-1">
       <slot />
     </main>
-    <Footer />
+    {!minimal && <Footer />}
 
     {siteConfig.analyticsEnabled && (
       <script is:inline data-analytics-placeholder></script>

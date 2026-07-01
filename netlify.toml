@@ -5,8 +5,9 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# Netlify Forms — form detection requires the built HTML to contain data-netlify forms
-# Configure form notifications in the Netlify dashboard after deploy.
+# Set in Netlify UI → Site settings → Environment variables:
+# PUBLIC_SUPABASE_URL
+# PUBLIC_SUPABASE_ANON_KEY
 
 [[redirects]]
   from = "/*"

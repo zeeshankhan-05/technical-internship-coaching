@@ -3,7 +3,7 @@ interface Props {
   id: string;
   label: string;
   name: string;
-  type?: 'text' | 'email' | 'url' | 'tel' | 'number' | 'date' | 'file';
+  type?: 'text' | 'email' | 'url' | 'tel' | 'number' | 'date' | 'month' | 'file';
   required?: boolean;
   hint?: string;
   accept?: string;
@@ -34,7 +34,7 @@ const isSelect = as === 'select';
 <div class="form-field">
   <label for={id} class="form-label">
     {label}
-    {required && <span class="text-red-700" aria-hidden="true"> *</span>}
+    {required && <span class="form-required" aria-hidden="true"> *</span>}
     {required && <span class="sr-only">(required)</span>}
   </label>
 

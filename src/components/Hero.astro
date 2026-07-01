@@ -1,38 +1,74 @@
 ---
 import CTAGroup from './CTAGroup.astro';
-import ProcessJourney from './ProcessJourney.astro';
-import { siteConfig } from '../config/site';
-
-interface Props {
-  headline?: string;
-  supporting?: string;
-  trustLine?: string;
-}
-
-const {
-  headline = siteConfig.tagline,
-  supporting = 'Personalized one-on-one coaching for college students pursuing software engineering, AI, data, and related technical internships. Improve how you present your experience, organize your search, approach networking, and prepare for interviews.',
-  trustLine = `Six private sessions · $${siteConfig.foundingPrice} founding pilot · No guaranteed outcomes or inflated claims`,
-} = Astro.props;
+import CoachingExample from './CoachingExample.astro';
+import LinkedInButton from './LinkedInButton.astro';
+import { siteConfig, founderProofPoints } from '../config/site';
 ---
 
-<section class="section-padding border-b border-border bg-surface">
+<section class="hero-glow section-padding border-b border-border">
   <div class="container-page">
-    <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
-      <div>
-        <h1 class="text-heading">{headline}</h1>
-        <p class="mt-6 text-lg text-text-muted">{supporting}</p>
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
+      <div class="max-w-xl">
+        <p class="eyebrow">Step 1 of 2 · {siteConfig.heroEyebrow}</p>
+        <h1 class="mt-4 text-heading">{siteConfig.tagline}</h1>
+        <p class="mt-5 text-lg text-text-muted">{siteConfig.heroSupporting}</p>
         <div class="mt-8">
           <CTAGroup
-            primary={{ label: 'Apply for a Free Strategy Call', href: '/apply' }}
-            secondary={{ label: 'View the Program', href: '/program', variant: 'secondary' }}
+            primary={{ label: siteConfig.cta.primary, href: '/apply' }}
+            secondary={{ label: siteConfig.cta.secondary, href: '/program', variant: 'secondary' }}
           />
         </div>
-        <p class="mt-6 text-sm text-text-muted">{trustLine}</p>
+        <p class="mt-5 text-sm text-text-muted">{siteConfig.trustLine}</p>
+        <div class="mt-4">
+          <LinkedInButton variant="text" />
+        </div>
       </div>
-      <div class="lg:pl-4">
-        <ProcessJourney />
+
+      <div class="space-y-5">
+        <div class="card">
+          <div class="flex gap-5">
+            <div class="shrink-0" id="founder-photo-wrap">
+              <img
+                src={siteConfig.founderPhotoUrl}
+                alt={`Photo of ${siteConfig.founderName}`}
+                width="96"
+                height="96"
+                class="founder-thumb h-24 w-24 rounded-2xl border border-border object-cover bg-accent-light"
+              />
+              <div class="founder-thumb-fallback hidden h-24 w-24 items-center justify-center rounded-2xl bg-accent-light text-2xl font-bold text-heading">
+                ZK
+              </div>
+            </div>
+            <div>
+              <p class="font-semibold text-heading">{siteConfig.founderName}</p>
+              <p class="text-sm text-text-muted">{siteConfig.founderTitle}</p>
+              <ul class="mt-4 space-y-2">
+                {founderProofPoints.map((point) => (
+                  <li class="flex gap-2 text-sm text-text-muted">
+                    <span class="check-icon" aria-hidden="true">✓</span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+        <CoachingExample />
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.founder-thumb').forEach((img) => {
+    const el = img as HTMLImageElement;
+    const fallback = el.nextElementSibling as HTMLElement | null;
+    const showFallback = () => {
+      el.classList.add('hidden');
+      fallback?.classList.remove('hidden');
+      fallback?.classList.add('flex');
+    };
+    el.addEventListener('error', showFallback);
+    if (el.complete && el.naturalWidth === 0) showFallback();
+  });
+</script>

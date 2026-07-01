@@ -4,23 +4,15 @@ export interface NavItem {
 }
 
 export const mainNav: NavItem[] = [
-  { label: 'Program', href: '/program' },
-  { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Apply', href: '/apply' },
+  { label: 'Free call', href: '#free-call' },
+  { label: 'Apply', href: '#apply' },
+  { label: 'FAQ', href: '#faq' },
 ];
 
 export const footerNav: NavItem[] = [
-  { label: 'Program', href: '/program' },
-  { label: 'About', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Apply', href: '/apply' },
-  { label: 'Book a Call', href: '/book' },
+  { label: 'Free call', href: '#free-call' },
+  { label: 'Apply', href: '#apply' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Privacy', href: '/privacy' },
   { label: 'Terms', href: '/terms' },
 ];
-
-export const headerCta = {
-  label: 'Book a Free Strategy Call',
-  href: '/book',
-};

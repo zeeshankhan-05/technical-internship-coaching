@@ -1,0 +1,58 @@
+---
+import { outcomes, programHighlights, compactRoleLabels, homepageProcessStages } from '../data/homepage';
+import ProcessStep from './ProcessStep.astro';
+import BookButton from './BookButton.astro';
+import { siteConfig } from '../config/site';
+---
+
+<section id="program" class="section-padding scroll-mt-20">
+  <div class="container-page">
+    <div class="text-center">
+      <p class="eyebrow">The program</p>
+      <h2 class="mt-4 text-heading">What you will leave with</h2>
+      <p class="mx-auto mt-4 max-w-2xl text-text-muted">
+        {siteConfig.programName} — honest outcomes, not hype. Six sessions over {siteConfig.programDurationWeeks} weeks.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2">
+      {outcomes.map((item) => (
+        <article class="card">
+          <h3 class="text-lg font-bold text-heading">{item.title}</h3>
+          <p class="mt-2 text-sm text-text-muted">{item.description}</p>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-16 grid gap-10 lg:grid-cols-2">
+      <div>
+        <h3 class="text-2xl font-bold text-heading">How the program works</h3>
+        <div class="mt-6 grid gap-5">
+          {homepageProcessStages.map((step) => (
+            <ProcessStep step={step.step} title={step.title} description={step.description} />
+          ))}
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="text-xl font-bold text-heading">What is included</h3>
+        <ul class="mt-5 space-y-3">
+          {programHighlights.map((item) => (
+            <li class="flex gap-2 text-sm text-text-muted">
+              <span class="check-icon">→</span>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6 text-sm text-text-muted">
+          I work with undergraduates pursuing {compactRoleLabels.slice(0, -1).join(', ')}, and{' '}
+          {compactRoleLabels.at(-1)?.toLowerCase()}. My strongest experience is in software engineering recruiting.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-12 flex justify-center">
+      <BookButton label={siteConfig.cta.scrollApply} variant="accent" openModal={false} href="#apply" />
+    </div>
+  </div>
+</section>

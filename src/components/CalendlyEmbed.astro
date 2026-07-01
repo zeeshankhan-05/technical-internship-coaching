@@ -1,0 +1,17 @@
+---
+import { siteConfig } from '../config/site';
+
+const calendlyParams = new URLSearchParams({
+  background_color: '172033',
+  text_color: 'e8edf4',
+  primary_color: '6cb4f0',
+});
+const calendlyUrl = `${siteConfig.calendlyUrl}?${calendlyParams.toString()}`;
+---
+
+<div
+  class="calendly-inline-widget w-full min-w-[320px] overflow-hidden rounded-2xl border border-border bg-surface"
+  data-url={calendlyUrl}
+  style="min-width:320px;height:700px;"
+></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>

@@ -1,0 +1,63 @@
+---
+import BookButton from './BookButton.astro';
+import LinkedInButton from './LinkedInButton.astro';
+import { siteConfig, founderProofPoints } from '../config/site';
+---
+
+<section class="hero-glow section-padding border-b border-border">
+  <div class="container-page">
+    <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,15rem)_minmax(0,1fr)] lg:gap-14">
+      <div class="text-center lg:text-left">
+        <img
+          src={siteConfig.founderPhotoUrl}
+          alt={`Photo of ${siteConfig.founderName}`}
+          width="160"
+          height="160"
+          class="founder-thumb mx-auto h-36 w-36 rounded-2xl border border-border object-cover lg:mx-0 lg:h-40 lg:w-40"
+        />
+        <div class="founder-thumb-fallback mx-auto hidden h-36 w-36 items-center justify-center rounded-2xl bg-surface-muted text-3xl font-bold text-heading lg:mx-0 lg:h-40 lg:w-40">
+          ZK
+        </div>
+        <p class="mt-5 text-lg font-semibold text-heading">{siteConfig.founderName}</p>
+        <p class="text-sm text-text-muted">{siteConfig.founderTitle}</p>
+        <div class="mt-3 flex justify-center lg:justify-start">
+          <LinkedInButton variant="text" />
+        </div>
+      </div>
+
+      <div class="max-w-xl lg:max-w-none">
+        <p class="eyebrow">{siteConfig.heroEyebrow}</p>
+        <h1 class="mt-4 text-heading">{siteConfig.tagline}</h1>
+        <p class="mt-5 text-lg text-text-muted">{siteConfig.heroSupporting}</p>
+
+        <ul class="mt-6 space-y-2">
+          {founderProofPoints.map((point) => (
+            <li class="flex gap-2 text-sm text-text-muted">
+              <span class="check-icon" aria-hidden="true">✓</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <BookButton />
+        </div>
+        <p class="mt-5 text-sm text-text-muted">{siteConfig.trustLine}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.founder-thumb').forEach((img) => {
+    const el = img as HTMLImageElement;
+    const fallback = el.nextElementSibling as HTMLElement | null;
+    const showFallback = () => {
+      el.classList.add('hidden');
+      fallback?.classList.remove('hidden');
+      fallback?.classList.add('flex');
+    };
+    el.addEventListener('error', showFallback);
+    if (el.complete && el.naturalWidth === 0) showFallback();
+  });
+</script>

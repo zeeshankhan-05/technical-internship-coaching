@@ -1,0 +1,64 @@
+---
+import { siteConfig } from '../config/site';
+import CTAGroup from './CTAGroup.astro';
+import { founderProofPoints } from '../config/site';
+import { whyIBuiltThis } from '../data/homepage';
+---
+
+<section class="section-padding">
+  <div class="container-page">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] lg:items-start">
+      <div>
+        <div class="card inline-block">
+          <img
+            src={siteConfig.founderPhotoUrl}
+            alt=""
+            width="280"
+            height="280"
+            class="mx-auto h-56 w-56 rounded-2xl border border-border object-cover bg-accent-light"
+            id="founder-photo"
+          />
+          <div id="founder-photo-fallback" class="hidden mx-auto flex h-56 w-56 items-center justify-center rounded-2xl bg-accent-light text-5xl font-bold text-heading">
+            ZK
+          </div>
+        </div>
+        <p class="mt-6 font-semibold text-heading">{siteConfig.founderName}</p>
+        <p class="text-sm text-text-muted">{siteConfig.founderTitle}</p>
+        <p class="mt-2 text-sm text-teal">{siteConfig.responseTime}</p>
+      </div>
+
+      <div>
+        <h2 class="text-heading">Why I built this program</h2>
+        <p class="mt-4 text-text-muted">{whyIBuiltThis}</p>
+
+        <div class="mt-8 grid gap-4 sm:grid-cols-2">
+          {founderProofPoints.map((point) => (
+            <div class="card py-4">
+              <p class="text-sm font-medium text-heading">{point}</p>
+            </div>
+          ))}
+        </div>
+
+        <p class="mt-8 text-lg italic text-heading">— Zeeshan</p>
+
+        <div class="mt-8">
+          <CTAGroup primary={{ label: siteConfig.cta.primary, href: '/apply' }} />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const img = document.getElementById('founder-photo') as HTMLImageElement | null;
+  const fallback = document.getElementById('founder-photo-fallback');
+  if (img && fallback) {
+    const showFallback = () => {
+      img.classList.add('hidden');
+      fallback.classList.remove('hidden');
+      fallback.classList.add('flex');
+    };
+    img.addEventListener('error', showFallback);
+    if (img.complete && img.naturalWidth === 0) showFallback();
+  }
+</script>

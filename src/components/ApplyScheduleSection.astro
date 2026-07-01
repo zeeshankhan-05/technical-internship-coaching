@@ -1,0 +1,84 @@
+---
+import IntakeForm from './IntakeForm.astro';
+import CalendlyEmbed from './CalendlyEmbed.astro';
+import { siteConfig } from '../config/site';
+
+const scheduleSubtitle = `Pick a ${siteConfig.strategyCallDurationMinutes}-minute time below. Bring your resume—I will review it on the call at no charge.`;
+---
+
+<section id="apply" class="section-padding section-alt scroll-mt-20">
+  <div class="container-page">
+    <div class="apply-schedule-layout">
+      <div class="apply-schedule-column">
+        <p class="phase-label">{siteConfig.phases.application}</p>
+        <h2 class="text-heading">{siteConfig.applicationTitle}</h2>
+        <p class="text-text-muted">{siteConfig.applicationSubtitle}</p>
+        <div class="card apply-schedule-panel border-border/80 shadow-none">
+          <IntakeForm formId="intake-form-inline" />
+        </div>
+      </div>
+
+      <div id="schedule" class="apply-schedule-column scroll-mt-20">
+        <p class="phase-label-warm">{siteConfig.phases.schedule}</p>
+        <h2 class="text-heading">Schedule your free call</h2>
+        <p class="text-text-muted">{scheduleSubtitle}</p>
+        <div class="apply-schedule-panel">
+          <CalendlyEmbed />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  function initApplyScheduleSection() {
+    const schedule = document.getElementById('schedule');
+    if (!schedule) return;
+
+    const reveal = () => {
+      schedule.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    if (window.location.hash === '#schedule' || sessionStorage.getItem('showSchedule') === '1') {
+      sessionStorage.removeItem('showSchedule');
+      reveal();
+    }
+  }
+
+  initApplyScheduleSection();
+  document.addEventListener('astro:page-load', initApplyScheduleSection);
+</script>
+
+<style>
+  .apply-schedule-layout {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .apply-schedule-layout {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: repeat(4, auto);
+      column-gap: 3rem;
+      row-gap: 0.75rem;
+    }
+  }
+
+  .apply-schedule-column {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  @media (min-width: 1024px) {
+    .apply-schedule-column {
+      grid-row: span 4;
+      grid-template-rows: subgrid;
+    }
+
+    .apply-schedule-panel {
+      margin-top: 1.25rem;
+      align-self: start;
+    }
+  }
+</style>

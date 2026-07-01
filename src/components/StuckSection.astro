@@ -1,0 +1,34 @@
+---
+import { stuckSection } from '../data/homepage';
+import BookButton from './BookButton.astro';
+---
+
+<section id="how-it-works" class="section-padding scroll-mt-20">
+  <div class="container-narrow">
+    <p class="eyebrow text-center">{stuckSection.eyebrow}</p>
+    <h2 class="mt-4 text-center text-heading">{stuckSection.title}</h2>
+    <p class="mt-6 text-center text-lg text-text-muted">{stuckSection.intro}</p>
+
+    <ul class="mx-auto mt-10 max-w-2xl space-y-4">
+      {stuckSection.painPoints.map((point) => (
+        <li class="flex gap-3 text-text-muted">
+          <span class="pain-dot" aria-hidden="true"></span>
+          <span>
+            {point.text}
+            <strong class="text-heading">{point.bold}</strong>
+            {point.suffix}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="card mx-auto mt-10 max-w-2xl text-center">
+      <p class="text-text-muted">{stuckSection.closing}</p>
+      <p class="mt-4 text-lg font-semibold text-heading">{stuckSection.resolution}</p>
+    </div>
+
+    <div class="mt-10 flex justify-center">
+      <BookButton />
+    </div>
+  </div>
+</section>

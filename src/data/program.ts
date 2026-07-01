@@ -18,14 +18,14 @@ export const programSessions: ProgramSession[] = [
       'Graduation and experience level',
       'Work authorization and geography when relevant',
       'Applications, responses, and interviews',
-      'Current résumé and projects',
+      'Current resume and projects',
       'Main bottleneck',
       'Highest-priority assignments',
     ],
   },
   {
     number: 2,
-    title: 'Résumé and project positioning',
+    title: 'Resume and project positioning',
     topics: [
       'Structure and scanability',
       'Experience and project selection',
@@ -37,12 +37,12 @@ export const programSessions: ProgramSession[] = [
   },
   {
     number: 3,
-    title: 'Résumé completion',
+    title: 'Resume completion',
     topics: [
       'Review revision quality',
       'Resolve remaining high-impact problems',
-      'Align the résumé with target roles',
-      'Establish a clearly labeled new résumé version',
+      'Align the resume with target roles',
+      'Establish a clearly labeled new resume version',
     ],
   },
   {
@@ -92,15 +92,15 @@ export const suitableStudentProfile = [
 export const qualificationRequirements = [
   'Currently enrolled as an undergraduate at a US college or university',
   'Actively preparing for or participating in a technical internship recruiting cycle',
-  'Has a current résumé and at least some projects, coursework, or prior experience to work with',
+  'Has a current resume and at least some projects, coursework, or prior experience to work with',
   'Can attend six scheduled private sessions within the completion window',
-  'Agrees to provide accurate information and truthful résumé content',
+  'Agrees to provide accurate information and truthful resume content',
   'Understands that coaching does not guarantee interviews, offers, or sponsorship',
 ];
 
 export const includedServices = [
-  `${siteConfig.sessionCount} private ${siteConfig.sessionDurationMinutes}-minute coaching sessions`,
-  `Up to ${siteConfig.resumeReviewRounds} structured résumé-review rounds`,
+  `${siteConfig.sessionCount} private coaching sessions throughout the program`,
+  `Up to ${siteConfig.resumeReviewRounds} structured resume-review rounds`,
   'Personalized recruiting bottleneck diagnosis',
   'Project and experience positioning guidance',
   'LinkedIn and portfolio recommendations',
@@ -115,7 +115,7 @@ export const includedServices = [
 
 export const excludedServices = [
   'Guaranteed interviews, offers, referrals, compensation, or sponsorship',
-  'Unlimited messaging or résumé revisions beyond included rounds',
+  'Unlimited messaging or resume revisions beyond included rounds',
   'Job applications completed on the client\'s behalf',
   'Standard mock interviews',
   'Completion of online assessments or take-home assignments',
@@ -130,7 +130,7 @@ export const studentResponsibilities = [
   'Complete agreed assignments',
   'Revise materials actively',
   'Provide accurate information',
-  'Verify every résumé metric and claim',
+  'Verify every resume metric and claim',
   'Maintain an application tracker',
   'Apply consistently when materials are ready',
   'Prepare for interviews',
@@ -138,21 +138,21 @@ export const studentResponsibilities = [
 ];
 
 export const betweenSessionSupport =
-  'Clients may send brief clarification questions between sessions. Questions should generally be consolidated into one message thread per week. Responses are normally provided within two business days. Extensive editing, new résumé-review rounds, urgent interview coaching, and major strategy work must occur during scheduled sessions unless separately agreed.';
+  'Clients may send brief clarification questions between sessions. Questions should generally be consolidated into one message thread per week. Responses are normally provided within two business days. Extensive editing, new resume-review rounds, urgent interview coaching, and major strategy work must occur during scheduled sessions unless separately agreed.';
 
 export const reschedulingPolicy = [
   'At least 12 hours\' notice is requested for ordinary rescheduling.',
   'One courtesy late-rescheduling exception is available.',
   'Reasonable flexibility is offered for genuine emergencies.',
   'A missed session without notice ordinarily counts as an included session.',
-  'If Zeeshan cancels, the session is rescheduled and does not count against the client.',
+  'If I cancel, the session is rescheduled and does not count against the client.',
 ];
 
 export const refundPrinciples = [
   'Full refund before the first paid session and before substantive document work begins.',
   'Completed sessions and completed review rounds are non-refundable.',
   'If the engagement ends early, the fair value of genuinely undelivered work is refunded.',
-  'If Zeeshan cannot deliver an included service, the client receives an equivalent replacement or proportional refund.',
+  'If I cannot deliver an included service, the client receives an equivalent replacement or proportional refund.',
   'No interest or late-payment penalties.',
 ];
 

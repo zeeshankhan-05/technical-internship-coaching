@@ -1,72 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Breadcrumbs from '../components/Breadcrumbs.astro';
-import CTAGroup from '../components/CTAGroup.astro';
-import Callout from '../components/Callout.astro';
-import { siteConfig } from '../config/site';
-
-const description =
-  'Book a free 30-minute strategy call to discuss your technical internship recruiting goals and identify your likely bottleneck.';
+const description = 'Redirecting.';
 ---
 
-<BaseLayout title="Book a Strategy Call" description={description} path="/book">
-  <section class="section-padding">
-    <div class="container-page max-w-3xl">
-      <Breadcrumbs items={[{ label: 'Book a Call', href: '/book' }]} />
-
-      <h1 class="text-heading">Book a free {siteConfig.strategyCallDurationMinutes}-minute strategy call</h1>
-      <p class="prose-content mt-6">
-        A short conversation to understand your recruiting situation, review what you&apos;ve shared, and identify your likely bottleneck. There is no obligation to enroll.
-      </p>
-
-      <div class="prose-content mt-10">
-        <h2>Before the call</h2>
-        <ol>
-          <li>Complete the <a href="/apply">intake form</a> with your résumé and recruiting details.</li>
-          <li>Have your current résumé accessible for reference.</li>
-          <li>Think about your target roles, recruiting season, and biggest challenge.</li>
-          <li>Find a quiet place with a stable connection for the video call.</li>
-        </ol>
-
-        <h2>What the call includes</h2>
-        <ul>
-          <li>Review of your intake information and résumé</li>
-          <li>Discussion of your target roles and recruiting activity</li>
-          <li>Identification of your likely recruiting bottleneck</li>
-          <li>One to three practical observations you can use immediately</li>
-          <li>Explanation of the paid program only when it appears relevant</li>
-        </ul>
-
-        <h2>What the call does not include</h2>
-        <ul>
-          <li>A complete résumé rebuild</li>
-          <li>Mock interviews or technical coaching</li>
-          <li>Guaranteed interviews, offers, or referrals</li>
-          <li>Immigration or legal advice</li>
-          <li>A substitute for the full six-session coaching program</li>
-        </ul>
-      </div>
-
-      <Callout variant="info" class="mt-10">
-        <p class="text-sm text-text-muted">
-          The free call may include one to three practical observations, but it is not a complete résumé rebuild or a substitute for the full coaching program.
-        </p>
-      </Callout>
-
-      <div class="mt-10">
-        <CTAGroup
-          primary={{
-            label: 'Schedule on Calendly',
-            href: siteConfig.calendlyUrl,
-            external: true,
-          }}
-          secondary={{ label: 'Complete Intake Form First', href: '/apply', variant: 'secondary' }}
-        />
-      </div>
-
-      <p class="mt-8 text-sm text-text-muted">
-        Prefer to submit your information first? Complete the <a href="/apply">intake form</a>, then schedule your call.
-      </p>
-    </div>
-  </section>
+<BaseLayout title="Book a Call" description={description} path="/book" noindex={true}>
+  <section class="section-padding"><div class="container-narrow text-center"><a href="/#schedule" class="btn btn-accent no-underline">Book a call</a></div></section>
 </BaseLayout>
+<script is:inline>window.location.replace('/#schedule');</script>

@@ -1,0 +1,38 @@
+---
+interface Props {
+  label?: string;
+  variant?: 'primary' | 'secondary' | 'accent';
+  class?: string;
+  openModal?: boolean;
+  href?: string;
+}
+
+import { siteConfig } from '../config/site';
+
+const {
+  label = siteConfig.cta.primary,
+  variant = 'primary',
+  class: className = '',
+  openModal = false,
+  href = '/#apply',
+} = Astro.props;
+
+const variantClass =
+  variant === 'secondary' ? 'btn-secondary' : variant === 'accent' ? 'btn-accent' : 'btn-primary';
+---
+
+{
+  openModal ? (
+    <button
+      type="button"
+      class={`btn ${variantClass} ${className}`}
+      data-open-application
+    >
+      {label}
+    </button>
+  ) : (
+    <a href={href} class={`btn ${variantClass} ${className} no-underline`}>
+      {label}
+    </a>
+  )
+}

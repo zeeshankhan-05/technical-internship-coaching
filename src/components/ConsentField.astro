@@ -14,7 +14,7 @@ const { id, label, name, required = false, hint } = Astro.props;
   <fieldset>
     <legend class="form-label">
       {label}
-      {required && <span class="text-red-700" aria-hidden="true"> *</span>}
+      {required && <span class="form-required" aria-hidden="true"> *</span>}
       {required && <span class="sr-only">(required)</span>}
     </legend>
     {hint && <p class="form-hint mb-3">{hint}</p>}

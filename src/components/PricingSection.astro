@@ -1,0 +1,50 @@
+---
+import { siteConfig } from '../config/site';
+import BookButton from './BookButton.astro';
+---
+
+<section id="pricing" class="section-padding scroll-mt-20">
+  <div class="container-page">
+    <div class="mx-auto max-w-4xl text-center">
+      <p class="eyebrow">Founding pilot</p>
+      <h2 class="mt-4 text-heading">One clear price. No fake discounts.</h2>
+    </div>
+
+    <div class="mx-auto mt-10 max-w-4xl">
+      <div class="card overflow-hidden p-0">
+        <div class="grid lg:grid-cols-2">
+          <div class="border-b border-border p-8 lg:border-b-0 lg:border-r">
+            <p class="text-sm font-semibold text-highlight">Founding pilot</p>
+            <p class="mt-2 text-5xl font-bold text-heading">${siteConfig.foundingPrice}</p>
+            <p class="mt-1 text-lg text-text-muted">total</p>
+            <p class="mt-4 text-text-muted">
+              Complete one-on-one technical internship coaching program
+            </p>
+            <ul class="mt-6 space-y-3 text-sm text-text-muted">
+              <li class="flex gap-2"><span class="check-icon">→</span> Six private coaching sessions</li>
+              <li class="flex gap-2"><span class="check-icon">→</span> Up to three resume-review rounds</li>
+              <li class="flex gap-2"><span class="check-icon">→</span> Personalized application and interview plan</li>
+              <li class="flex gap-2"><span class="check-icon">→</span> {siteConfig.maxCompletionWeeks}-week completion window</li>
+            </ul>
+          </div>
+          <div class="flex flex-col justify-between p-8">
+            <div>
+              <p class="font-bold text-heading">Payment options</p>
+              <ul class="mt-4 space-y-3 text-sm text-text-muted">
+                <li>${siteConfig.foundingPrice} before Session 1</li>
+                <li>Or ${siteConfig.paymentPlanFirst} before Session 1 and ${siteConfig.paymentPlanSecond} before Session 4</li>
+                <li>No interest or additional financing charges</li>
+              </ul>
+            </div>
+            <div class="mt-8">
+              <BookButton />
+              <p class="mt-4 text-xs text-text-muted">
+                Start with a free call. The founding price is published clearly — not a crossed-out promotional discount.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,44 +1,34 @@
 ---
-import { mainNav, headerCta } from '../data/navigation';
+import { mainNav } from '../data/navigation';
 import { siteConfig } from '../config/site';
-
-const currentPath = Astro.url.pathname;
+import BookButton from './BookButton.astro';
 ---
 
-<header class="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-sm">
+<header class="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-md">
   <div class="container-page flex h-16 items-center justify-between gap-4">
-    <a href="/" class="shrink-0 text-base font-semibold text-heading no-underline hover:text-accent">
-      <span class="hidden sm:inline">{siteConfig.siteName}</span>
-      <span class="sm:hidden">TI Coaching</span>
+    <a href="/" class="shrink-0 text-sm font-semibold text-heading no-underline sm:text-base">
+      {siteConfig.brandLine}
     </a>
 
-    <nav class="hidden items-center gap-6 md:flex" aria-label="Main navigation">
+    <nav class="hidden items-center gap-6 lg:flex" aria-label="Main navigation">
       {mainNav.map((item) => (
         <a
           href={item.href}
-          class:list={[
-            'text-sm font-medium no-underline',
-            currentPath === item.href || currentPath.startsWith(item.href + '/')
-              ? 'text-accent'
-              : 'text-text-muted hover:text-accent',
-          ]}
-          aria-current={currentPath === item.href ? 'page' : undefined}
+          class="text-sm font-medium text-text-muted no-underline hover:text-accent"
         >
           {item.label}
         </a>
       ))}
     </nav>
 
-    <div class="hidden md:block">
-      <a href={headerCta.href} class="btn btn-primary text-sm">
-        {headerCta.label}
-      </a>
+    <div class="hidden sm:block">
+      <BookButton class="!min-h-10 !px-4 !py-2 !text-sm" />
     </div>
 
     <button
       type="button"
       id="mobile-menu-button"
-      class="btn btn-ghost min-h-11 min-w-11 p-2 md:hidden"
+      class="btn btn-ghost min-h-11 min-w-11 p-2 sm:hidden"
       aria-expanded="false"
       aria-controls="mobile-menu"
       aria-label="Open menu"
@@ -51,7 +41,7 @@ const currentPath = Astro.url.pathname;
 
   <div
     id="mobile-menu"
-    class="hidden border-t border-border bg-surface md:hidden"
+    class="hidden border-t border-border bg-background sm:hidden"
     role="dialog"
     aria-modal="true"
     aria-label="Mobile navigation"
@@ -60,14 +50,14 @@ const currentPath = Astro.url.pathname;
       {mainNav.map((item) => (
         <a
           href={item.href}
-          class="rounded-lg px-3 py-3 text-base font-medium text-heading no-underline hover:bg-background"
+          class="rounded-lg px-3 py-3 text-base font-medium text-heading no-underline hover:bg-surface"
         >
           {item.label}
         </a>
       ))}
-      <a href={headerCta.href} class="btn btn-primary mt-2">
-        {headerCta.label}
-      </a>
+      <div class="mt-2">
+        <BookButton class="w-full" />
+      </div>
     </nav>
   </div>
 </header>
@@ -76,24 +66,23 @@ const currentPath = Astro.url.pathname;
   function initMobileNav() {
     const button = document.getElementById('mobile-menu-button');
     const menu = document.getElementById('mobile-menu');
-    if (!button || !menu) return;
+    if (!button || !menu || button.dataset.bound) return;
+    button.dataset.bound = 'true';
 
     const menuLinks = menu.querySelectorAll('a');
-
-    function openMenu() {
-      menu.classList.remove('hidden');
-      button.setAttribute('aria-expanded', 'true');
-      button.setAttribute('aria-label', 'Close menu');
-      document.body.style.overflow = 'hidden';
-      menuLinks[0]?.focus();
-    }
 
     function closeMenu() {
       menu.classList.add('hidden');
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-label', 'Open menu');
       document.body.style.overflow = '';
-      button.focus();
+    }
+
+    function openMenu() {
+      menu.classList.remove('hidden');
+      button.setAttribute('aria-expanded', 'true');
+      button.setAttribute('aria-label', 'Close menu');
+      document.body.style.overflow = 'hidden';
     }
 
     button.addEventListener('click', () => {
@@ -102,29 +91,10 @@ const currentPath = Astro.url.pathname;
       else openMenu();
     });
 
+    menuLinks.forEach((link) => link.addEventListener('click', closeMenu));
+
     menu.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeMenu();
-        return;
-      }
-
-      if (e.key === 'Tab') {
-        const focusable = Array.from(menu.querySelectorAll('a, button'));
-        const first = focusable[0] as HTMLElement;
-        const last = focusable[focusable.length - 1] as HTMLElement;
-
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    });
-
-    menuLinks.forEach((link) => {
-      link.addEventListener('click', closeMenu);
+      if (e.key === 'Escape') closeMenu();
     });
   }
 

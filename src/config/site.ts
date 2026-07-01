@@ -5,25 +5,46 @@
 
 export const siteConfig = {
   siteName: 'Technical Internship Coaching with Zeeshan Khan',
+  brandLine: 'Zeeshan Khan · Internship Coaching',
   founderName: 'Zeeshan Khan',
-  tagline:
-    'Turn your technical work into a stronger internship application and a clearer recruiting system.',
+  founderTitle: 'Software Engineering Intern at Splunk',
+  tagline: 'Get honest resume feedback before your next application.',
+  heroEyebrow: 'Free coaching call for undergraduates',
+  heroSupporting:
+    'Book a free 30-minute call. I will review your resume and give you actionable feedback—completely free, with no obligation to enroll.',
   supportingStatement:
-    'One-on-one coaching for students pursuing software engineering, AI, data, and related technical internships—from résumé and project positioning to applications, networking, and preparation.',
+    'One-on-one coaching for students pursuing software engineering, AI, data, and related technical internships—from resume and project positioning to applications, networking, and preparation.',
 
-  /** PLACEHOLDER — replace with your public domain before launch (e.g. https://example.com) */
   siteUrl: 'https://PLACEHOLDER-DOMAIN.com',
 
-  /** PLACEHOLDER — replace with your LinkedIn profile URL before launch */
-  linkedinUrl: 'https://www.linkedin.com/in/PLACEHOLDER',
+  linkedinUrl: 'https://www.linkedin.com/in/zeeshankhan05/',
 
-  /** PLACEHOLDER — replace with your contact email before launch */
   contactEmail: 'PLACEHOLDER@example.com',
 
   calendlyUrl: 'https://calendly.com/zeekhan-business/30min',
 
-  /** PLACEHOLDER — add payment URL when ready */
+  founderPhotoUrl: '/founder.jpg',
+
   paymentUrl: '',
+
+  responseTime: 'I normally respond within two business days.',
+
+  phases: {
+    application: 'Part one · Tell me about your search',
+    schedule: 'Part two · Pick a time for your call',
+  },
+
+  cta: {
+    primary: 'Start Your Application',
+    submit: 'Schedule Your Free Call',
+    secondary: 'See what is included',
+    scrollApply: 'Open the application',
+    afterSubmit: 'Choose your call time',
+    enroll: 'Enroll in the founding pilot',
+    viewProgram: 'View the full program',
+  },
+
+  trustLine: 'Free resume feedback on the call · 30 minutes · No charge · No obligation',
 
   foundingPrice: 299,
   paymentPlanFirst: 150,
@@ -35,23 +56,27 @@ export const siteConfig = {
   resumeReviewRounds: 3,
   strategyCallDurationMinutes: 30,
 
-  /** Set to true only when manually and truthfully enabled */
   showCapacityScarcity: false,
   capacitySpotsRemaining: 0,
-
-  /** Optional analytics — disabled by default. See README for integration. */
   analyticsEnabled: false,
-
   testimonialsEnabled: false,
 
   disclaimerText:
-    'This coaching service is independently operated by Zeeshan Khan and is not affiliated with or endorsed by the University of Illinois Urbana-Champaign, Splunk, Cisco, or any other employer mentioned.',
+    'I independently operate this coaching service. It is not affiliated with or endorsed by the University of Illinois Urbana-Champaign, Splunk, Cisco, or any other employer mentioned.',
 
   programName: 'Technical Internship Application Accelerator',
+  applicationTitle: 'Tell me about your search',
+  applicationSubtitle:
+    'A short application helps me prepare for our call. Upload your resume if you have one—I will use it to give you more specific feedback.',
 
-  /** Résumé upload limits */
-  resumeMaxSizeBytes: 5 * 1024 * 1024, // 5 MB
+  resumeMaxSizeBytes: 5 * 1024 * 1024,
   resumeAcceptedExtensions: ['.pdf', '.doc', '.docx'] as const,
 } as const;
 
 export type SiteConfig = typeof siteConfig;
+
+export const founderProofPoints = [
+  'UIUC computer science student',
+  '4 technical internship offers',
+  'Interviews with 10+ companies',
+] as const;

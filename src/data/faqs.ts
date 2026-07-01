@@ -8,8 +8,30 @@ export interface FAQ {
 
 export const faqs: FAQ[] = [
   {
+    id: 'free-call-cost',
+    question: 'Is the free call actually free?',
+    answer: `Yes. The ${siteConfig.strategyCallDurationMinutes}-minute call—including live resume feedback—is completely free. There is no payment required to book or attend, and no obligation to enroll in paid coaching afterward.`,
+  },
+  {
+    id: 'who-should-book',
+    question: 'Who should book a free call?',
+    answer:
+      'Undergraduate students at US colleges who are preparing for software engineering, AI, data, or related technical internships. You do not need to be ready to enroll in paid coaching—a current resume and real questions about your search are enough.',
+  },
+  {
+    id: 'obligation-to-enroll',
+    question: 'Do I have to enroll after the free call?',
+    answer:
+      'No. The free call is for honest advice about your search at no charge. The paid coaching program is explained only if it seems relevant to your goals. Many students take the feedback and continue on their own.',
+  },
+  {
+    id: 'program-includes',
+    question: `What is included in the $${siteConfig.foundingPrice} program?`,
+    answer: `The founding pilot includes ${siteConfig.sessionCount} private coaching sessions over about ${siteConfig.programDurationWeeks} weeks, up to ${siteConfig.resumeReviewRounds} structured resume-review rounds, application and networking strategy, and interview preparation planning.`,
+  },
+  {
     id: 'who-is-it-for',
-    question: 'Who is the program for?',
+    question: 'Who is the paid program for?',
     answer:
       'The program is designed for US-based undergraduate students enrolled at US colleges who are pursuing their first or next technical internship in software engineering, AI, data, or related fields. You should be willing to commit two to three hours per week and revise your materials actively.',
   },
@@ -17,13 +39,13 @@ export const faqs: FAQ[] = [
     id: 'which-roles',
     question: 'Which technical roles can you support?',
     answer:
-      'Supported role families include software engineering, AI engineering, machine-learning engineering, data science, data engineering, analytics, cloud and infrastructure, cybersecurity, and related technical roles. Zeeshan\'s strongest experience is in software engineering recruiting, but many positioning and application principles transfer across technical roles.',
+      'Supported role families include software engineering, AI engineering, machine-learning engineering, data science, data engineering, analytics, cloud and infrastructure, cybersecurity, and related technical roles. My strongest experience is in software engineering recruiting, but many positioning and application principles transfer across technical roles.',
   },
   {
     id: 'only-swe',
     question: 'Is this only for software engineering students?',
     answer:
-      'No. The program supports students pursuing a range of technical internships. For roles outside software engineering, Zeeshan distinguishes between transferable recruiting guidance and advanced preparation that may require specialized resources or subject-matter experts.',
+      'No. The program supports students pursuing a range of technical internships. For roles outside software engineering, I distinguish between transferable recruiting guidance and advanced preparation that may require specialized resources or subject-matter experts.',
   },
   {
     id: 'guarantees',
@@ -45,9 +67,9 @@ export const faqs: FAQ[] = [
   },
   {
     id: 'strategy-call',
-    question: 'What happens during the free strategy call?',
+    question: 'What happens on the free call?',
     answer:
-      'After you complete the intake form, Zeeshan reviews your information and résumé. The 30-minute call identifies your likely recruiting bottleneck and provides one to three practical observations. The paid program is explained only when it appears relevant. There is no obligation to enroll.',
+      `After you submit the short application, I review your background and any resume you share. On the ${siteConfig.strategyCallDurationMinutes}-minute call, I give you free resume feedback and honest advice about your search—at no charge. You will also receive one to three practical observations about your biggest bottleneck. The paid program ($${siteConfig.foundingPrice} founding pilot) is explained only when it seems relevant. There is no obligation to enroll.`,
   },
   {
     id: 'duration',
@@ -57,24 +79,24 @@ export const faqs: FAQ[] = [
   {
     id: 'sessions',
     question: 'How many private sessions are included?',
-    answer: `The program includes ${siteConfig.sessionCount} private ${siteConfig.sessionDurationMinutes}-minute sessions.`,
+    answer: `The program includes ${siteConfig.sessionCount} private coaching sessions structured across the program.`,
   },
   {
     id: 'resume-review',
-    question: 'How does résumé review work?',
-    answer: `The program includes up to ${siteConfig.resumeReviewRounds} structured résumé-review rounds across Sessions 2 and 3. Reviews focus on structure, positioning, truthful metrics, and alignment with target roles. You are responsible for implementing revisions.`,
+    question: 'How does resume review work?',
+    answer: `The program includes up to ${siteConfig.resumeReviewRounds} structured resume-review rounds across Sessions 2 and 3. Reviews focus on structure, positioning, truthful metrics, and alignment with target roles. You are responsible for implementing revisions.`,
   },
   {
     id: 'write-resume',
-    question: 'Will you write my entire résumé for me?',
+    question: 'Will you write my entire resume for me?',
     answer:
-      'No. Coaching helps you improve how you present your experience, but you write and verify every claim. Zeeshan does not fabricate experience, projects, metrics, or skills.',
+      'No. Coaching helps you improve how you present your experience, but you write and verify every claim. I do not fabricate experience, projects, metrics, or skills.',
   },
   {
     id: 'apply-for-me',
     question: 'Do you apply to jobs for clients?',
     answer:
-      'No. Zeeshan does not submit applications, complete assessments, or take-home assignments on a client\'s behalf.',
+      'No. I do not submit applications, complete assessments, or take-home assignments on a client\'s behalf.',
   },
   {
     id: 'mock-interviews',
@@ -86,7 +108,7 @@ export const faqs: FAQ[] = [
     id: 'assessments',
     question: 'Can you complete an assessment or take-home assignment with me?',
     answer:
-      'No. Zeeshan does not complete online assessments, coding tests, or take-home assignments for clients.',
+      'No. I do not complete online assessments, coding tests, or take-home assignments for clients.',
   },
   {
     id: 'time-commitment',
@@ -125,15 +147,9 @@ export const faqs: FAQ[] = [
       'Yes. You may choose not to have your materials processed by third-party AI tools. This does not reduce access to coaching or change the price.',
   },
   {
-    id: 'affiliation',
-    question: 'Is this service affiliated with UIUC, Splunk, or another employer?',
-    answer:
-      'No. This coaching service is independently operated by Zeeshan Khan and is not affiliated with or endorsed by the University of Illinois Urbana-Champaign, Splunk, Cisco, or any other employer mentioned.',
-  },
-  {
-    id: 'hourly-price',
-    question: 'Is the $299 price hourly?',
-    answer: `No. The $${siteConfig.foundingPrice} founding pilot price covers the complete ${siteConfig.sessionCount}-session coaching process, not an hourly rate.`,
+    id: 'program-price',
+    question: 'Is the $299 price for the full program?',
+    answer: `Yes. The $${siteConfig.foundingPrice} founding pilot covers the complete coaching program from start to finish.`,
   },
   {
     id: 'after-program',
@@ -145,6 +161,25 @@ export const faqs: FAQ[] = [
     id: 'graduate-students',
     question: 'Can graduate students or early-career candidates participate?',
     answer:
-      'The initial focus is undergraduate students at US colleges. Graduate students or early-career candidates may inquire through the intake form; fit depends on recruiting goals, experience level, and program scope.',
+      'The initial focus is undergraduate students at US colleges. Graduate students or early-career candidates may inquire through the application form; fit depends on recruiting goals, experience level, and program scope.',
   },
 ];
+
+export const faqGroups = [
+  {
+    title: 'Eligibility and fit',
+    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international', 'graduate-students', 'guarantees'],
+  },
+  {
+    title: 'Program and coaching',
+    ids: ['free-call-cost', 'strategy-call', 'obligation-to-enroll', 'duration', 'sessions', 'program-includes', 'resume-review', 'write-resume', 'apply-for-me', 'mock-interviews', 'assessments', 'time-commitment', 'between-sessions', 'after-program'],
+  },
+  {
+    title: 'Pricing and scheduling',
+    ids: ['program-price', 'rescheduling', 'refunds'],
+  },
+  {
+    title: 'Policies and privacy',
+    ids: ['immigration', 'ai-use', 'ai-opt-out'],
+  },
+] as const;
