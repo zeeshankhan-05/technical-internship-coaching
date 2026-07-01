@@ -271,10 +271,8 @@ const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake
             throw new Error(payload.error || 'Submission failed');
           }
 
-          sessionStorage.setItem('showSchedule', '1');
-          document.getElementById('application-modal')?.classList.add('hidden');
-          document.body.style.overflow = '';
-          window.location.href = '/#schedule';
+          form.reset();
+          window.dispatchEvent(new CustomEvent('intake-submitted'));
         } catch (error) {
           if (status) {
             status.className = 'alert-error';

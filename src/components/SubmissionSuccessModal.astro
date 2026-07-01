@@ -1,0 +1,79 @@
+---
+import { siteConfig } from '../config/site';
+---
+
+<div
+  id="submission-success-modal"
+  class="modal-backdrop hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="submission-success-title"
+  aria-hidden="true"
+>
+  <div class="modal-panel max-w-md text-center">
+    <div
+      class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent/15 text-2xl text-accent"
+      aria-hidden="true"
+    >
+      ✓
+    </div>
+
+    <h2 id="submission-success-title" class="mt-5 text-2xl text-heading">
+      Application submitted
+    </h2>
+    <p class="mt-3 text-sm text-text-muted">
+      Thanks — your information was received. Pick a time for your free {siteConfig.strategyCallDurationMinutes}-minute call below.
+    </p>
+
+    <button type="button" class="btn btn-primary mt-8 w-full" data-close-submission-success>
+      {siteConfig.cta.afterSubmit}
+    </button>
+  </div>
+</div>
+
+<script>
+  function initSubmissionSuccessModal() {
+    const modal = document.getElementById('submission-success-modal');
+    if (!modal || modal.dataset.bound) return;
+    modal.dataset.bound = 'true';
+
+    const closeButton = modal.querySelector('[data-close-submission-success]');
+
+    const openModal = () => {
+      document.getElementById('application-modal')?.classList.add('hidden');
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      closeButton?.focus();
+    };
+
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+
+      const schedule = document.getElementById('schedule');
+      if (schedule) {
+        schedule.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.replaceState(null, '', '#schedule');
+      }
+    };
+
+    window.addEventListener('intake-submitted', openModal);
+
+    closeButton?.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    });
+  }
+
+  initSubmissionSuccessModal();
+  document.addEventListener('astro:page-load', initSubmissionSuccessModal);
+</script>

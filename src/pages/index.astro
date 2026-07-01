@@ -6,6 +6,7 @@ import ApplyScheduleSection from '../components/ApplyScheduleSection.astro';
 import FounderStory from '../components/FounderStory.astro';
 import FAQAccordion from '../components/FAQAccordion.astro';
 import ApplicationModal from '../components/ApplicationModal.astro';
+import SubmissionSuccessModal from '../components/SubmissionSuccessModal.astro';
 import { siteConfig } from '../config/site';
 import { faqs } from '../data/faqs';
 import { homepageFaqIds } from '../data/homepage';
@@ -31,4 +32,5 @@ const homepageFaqs = faqs.filter((f) => homepageFaqIds.includes(f.id));
   </section>
 
   <ApplicationModal />
+  <SubmissionSuccessModal />
 </BaseLayout>

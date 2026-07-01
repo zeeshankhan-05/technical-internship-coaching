@@ -54,6 +54,19 @@ npm run build
 
 ## Viewing submissions
 
-Open the Supabase dashboard → **Table Editor** → `intake_submissions`.
+### Form responses
 
-Resumes are in **Storage** → `resumes` (private; download via dashboard or service role).
+Open the [Supabase dashboard](https://supabase.com/dashboard/project/qncraywmpdvklxqogpkm) → **Table Editor** → `intake_submissions`.
+
+Each row includes the applicant's answers plus:
+
+- `resume_file_name` — original filename (e.g. `Jane_Doe_Resume.pdf`)
+- `resume_storage_path` — path inside the private bucket (e.g. `{submission-id}/Jane_Doe_Resume.pdf`)
+
+### Downloading resumes (PDF / DOCX)
+
+1. Go to **Storage** → **resumes** (private bucket).
+2. Open the folder named with the submission's `id` from the table row.
+3. Click the file, then **Download** (or preview PDFs in the browser).
+
+Files are stored at `{submission_id}/{original_filename}` when the form is submitted. Only your Supabase project owner account can access them through the dashboard.
