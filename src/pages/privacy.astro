@@ -18,7 +18,7 @@ const showEmail = !siteConfig.contactEmail.includes('PLACEHOLDER');
 
       <div class="prose-content mt-10">
         <p>
-          This policy describes how I collect, use, and protect information when you use the coaching website or submit an intake form. I independently operate this service. It is not affiliated with any university or employer.
+          This policy describes how I collect, use, and protect information when you use this coaching website or submit an intake form. I independently operate this service. It is not affiliated with any university or employer.
         </p>
 
         <h2>What information is collected</h2>
@@ -28,13 +28,13 @@ const showEmail = !siteConfig.contactEmail.includes('PLACEHOLDER');
           <li>Time zone, target roles, recruiting season, and preferred locations</li>
           <li>Work authorization or sponsorship information you choose to share</li>
           <li>LinkedIn, GitHub, or portfolio URLs</li>
-          <li>Your resume (PDF or DOCX upload)</li>
+          <li>Your résumé (PDF or DOCX upload)</li>
           <li>Recruiting activity estimates (applications, responses, assessments, interviews)</li>
           <li>Experience descriptions and coaching goals</li>
           <li>AI processing preference and privacy consent</li>
         </ul>
         <p>
-          We do not collect Social Security numbers, identity documents, immigration records, financial credentials, passwords, or sensitive medical information through this form.
+          I do not collect Social Security numbers, identity documents, immigration records, financial credentials, passwords, or sensitive medical information through this form.
         </p>
 
         <h2>Why information is collected</h2>
@@ -47,52 +47,59 @@ const showEmail = !siteConfig.contactEmail.includes('PLACEHOLDER');
           <li>Honor your AI processing and privacy preferences</li>
         </ul>
 
-        <h2>Form processing</h2>
+        <h2>Form processing and data storage</h2>
         <p>
-          Intake forms are processed through Supabase (database and secure file storage). Submitted data is stored in my Supabase project and is accessible only to me through authenticated admin access. Optional resume uploads are stored in a private storage bucket. See Supabase&apos;s privacy documentation for details on their infrastructure and data handling.
+          Intake forms are processed through <strong>Supabase</strong>, a third-party database and file-storage provider. Submitted data is stored in my Supabase project and is accessible only to me through authenticated admin access. Résumé uploads are stored in a private storage bucket. Supabase processes and stores this data on its own infrastructure. I do not control Supabase&apos;s internal data-handling practices. You can review Supabase&apos;s privacy documentation at <a href="https://supabase.com/privacy">supabase.com/privacy</a>.
         </p>
 
         <h2>Scheduling</h2>
         <p>
-          Strategy calls are scheduled through Calendly. When you book a call, Calendly collects scheduling information according to its own privacy policy. The coaching service does not control Calendly&apos;s data practices.
+          Strategy calls are scheduled through <strong>Calendly</strong>. When you book a call, Calendly collects your name, email, and scheduling information according to its own privacy policy at <a href="https://calendly.com/pages/privacy">calendly.com/pages/privacy</a>. I do not control Calendly&apos;s data practices. Calendly may collect information before you have enrolled in any paid program.
         </p>
 
         <h2>Payment processing</h2>
         <p>
-          Payment processing may be added separately in the future. If so, payment details will be handled by the chosen payment provider and will not be stored on this website.
+          Payment is currently handled by invoice after full program delivery. If a third-party payment processor is added, payment details will be handled by that provider and will not be stored on this website. The specific payment provider and its practices will be identified before any payment is collected.
         </p>
 
         <h2>Third-party AI processing</h2>
         <p>
-          With your consent, limited third-party AI tools may assist with reviewing coaching materials. Identifying information is removed where reasonably possible before AI use. You may opt out of third-party AI processing without affecting access to coaching or the price.
+          With your explicit consent, a third-party AI tool (Claude, by Anthropic) may assist with reviewing coaching materials such as your résumé. When AI tools are used, I remove your name and contact details where reasonably possible before processing. I do not upload identity documents, immigration records, or financial information to AI tools.
+        </p>
+        <p>
+          You may opt out of AI-assisted processing at any time. Opting out does not affect your access to coaching, your treatment, or your price.
+        </p>
+        <p>
+          AI service providers may retain limited technical records for security, legal compliance, abuse prevention, or technical operations. I do not control the internal data-handling practices of third-party AI providers.
         </p>
 
         <h2>What I do not do</h2>
         <ul>
-          <li>I do not sell client data.</li>
-          <li>I do not record strategy or coaching calls by default.</li>
+          <li>I do not sell client data to any third party.</li>
+          <li>I do not record strategy calls or coaching sessions by default.</li>
           <li>I do not use client materials publicly without separate written permission.</li>
+          <li>I do not train AI models on client data or submit client materials as optional AI provider feedback.</li>
         </ul>
 
         <h2>Data retention</h2>
         <p>
-          Working resume files are approximately removed or anonymized within 90 days after program completion, unless you request continued storage or grant case-study permission. Legally or financially required transaction records may be retained as needed.
+          Working résumé files and similar coaching materials are deleted or anonymized within 90 days after program completion, unless you request continued storage or separately grant case-study permission. Signed agreements, payment records, consent records, and legally required transaction records may be retained longer as required.
         </p>
 
         <h2>Requesting deletion</h2>
         <p>
           You may request deletion of non-required materials
           {showEmail ? (
-            <> by emailing <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</>
+            <> by contacting me at <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</>
           ) : (
-            <> through the contact method provided after launch.</>
+            <> by contacting me through the method provided after launch.</>
           )}
           {' '}Reasonable requests will be honored unless retention is required for legal, financial, or dispute-resolution purposes.
         </p>
 
         <h2>Security limits</h2>
         <p>
-          Email and online form transmission are not perfectly secure. While reasonable care is taken with client information, no method of electronic transmission or storage is guaranteed to be completely secure.
+          Email and online form transmission are not perfectly secure. While I take reasonable care with your information, no method of electronic transmission or storage is guaranteed to be completely secure. Please avoid sending sensitive personal documents (such as government identification or financial records) through this form or by unencrypted email.
         </p>
 
         <h2>Changes</h2>
