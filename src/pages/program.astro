@@ -1,9 +1,0 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-const description = 'Redirecting.';
----
-
-<BaseLayout title="Program" description={description} path="/program" noindex={true}>
-  <section class="section-padding"><div class="container-narrow text-center"><a href="/#program" class="btn btn-accent no-underline">View program</a></div></section>
-</BaseLayout>
-<script is:inline>window.location.replace('/#program');</script>

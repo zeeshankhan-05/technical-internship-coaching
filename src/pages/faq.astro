@@ -1,9 +1,0 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
-const description = 'Redirecting.';
----
-
-<BaseLayout title="FAQ" description={description} path="/faq" noindex={true}>
-  <section class="section-padding"><div class="container-narrow text-center"><a href="/#faq" class="btn btn-accent no-underline">View FAQ</a></div></section>
-</BaseLayout>
-<script is:inline>window.location.replace('/#faq');</script>

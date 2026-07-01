@@ -25,8 +25,6 @@ export const siteConfig = {
 
   founderPhotoUrl: '/founder.jpg',
 
-  paymentUrl: '',
-
   responseTime: 'I normally respond within two business days.',
 
   phases: {
@@ -37,11 +35,7 @@ export const siteConfig = {
   cta: {
     primary: 'Start Your Application',
     submit: 'Schedule Your Free Call',
-    secondary: 'See what is included',
-    scrollApply: 'Open the application',
     afterSubmit: 'Choose your call time',
-    enroll: 'Enroll in the founding pilot',
-    viewProgram: 'View the full program',
   },
 
   trustLine: 'Free resume feedback on the call · 20 minutes · No charge · No obligation',
@@ -53,13 +47,9 @@ export const siteConfig = {
   sessionDurationMinutes: 45,
   programDurationWeeks: 6,
   maxCompletionWeeks: 8,
-  resumeReviewRounds: 3,
   strategyCallDurationMinutes: 20,
 
-  showCapacityScarcity: false,
-  capacitySpotsRemaining: 0,
   analyticsEnabled: false,
-  testimonialsEnabled: false,
 
   disclaimerText:
     'I independently operate this coaching service. It is not affiliated with or endorsed by the University of Illinois Urbana-Champaign, Splunk, Cisco, or any other employer mentioned.',
@@ -72,8 +62,6 @@ export const siteConfig = {
   resumeMaxSizeBytes: 5 * 1024 * 1024,
   resumeAcceptedExtensions: ['.pdf', '.doc', '.docx'] as const,
 } as const;
-
-export type SiteConfig = typeof siteConfig;
 
 export const founderProofPoints = [
   'UIUC computer science student',

@@ -147,22 +147,3 @@ export const faqs: FAQ[] = [
       'Session 6 includes a progress review, next bottleneck identification, and a post-program plan. The program is designed to leave you with clearer materials, a focused application system, and a continued preparation roadmap.',
   },
 ];
-
-export const faqGroups = [
-  {
-    title: 'Eligibility and fit',
-    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international'],
-  },
-  {
-    title: 'Program and coaching',
-    ids: ['free-call-cost', 'strategy-call', 'duration', 'sessions', 'program-includes', 'resume-review', 'write-resume', 'apply-for-me', 'mock-interviews', 'assessments', 'time-commitment', 'between-sessions', 'after-program'],
-  },
-  {
-    title: 'Pricing and scheduling',
-    ids: ['program-price', 'rescheduling', 'refunds'],
-  },
-  {
-    title: 'Policies and privacy',
-    ids: ['immigration', 'ai-use', 'ai-opt-out'],
-  },
-] as const;

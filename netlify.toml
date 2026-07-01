@@ -3,11 +3,41 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "22"
+NODE_VERSION = "22"
 
 # Set in Netlify UI → Site settings → Environment variables:
 # PUBLIC_SUPABASE_URL
 # PUBLIC_SUPABASE_ANON_KEY
+
+[[redirects]]
+from = "/about"
+to = "/#story"
+status = 302
+
+[[redirects]]
+from = "/book"
+to = "/#schedule"
+status = 302
+
+[[redirects]]
+from = "/faq"
+to = "/#faq"
+status = 302
+
+[[redirects]]
+from = "/apply"
+to = "/#apply"
+status = 302
+
+[[redirects]]
+from = "/apply/success"
+to = "/#schedule"
+status = 302
+
+[[redirects]]
+from = "/program"
+to = "/#apply"
+status = 302
 
 [[redirects]]
   from = "/*"
