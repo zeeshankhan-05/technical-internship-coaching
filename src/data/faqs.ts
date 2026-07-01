@@ -19,15 +19,9 @@ export const faqs: FAQ[] = [
       'Undergraduate students at US colleges who are preparing for software engineering, AI, data, or related technical internships. You do not need to be ready to enroll in paid coaching—a current resume and real questions about your search are enough.',
   },
   {
-    id: 'obligation-to-enroll',
-    question: 'Do I have to enroll after the free call?',
-    answer:
-      'No. The free call is for honest advice about your search at no charge. The paid coaching program is explained only if it seems relevant to your goals. Many students take the feedback and continue on their own.',
-  },
-  {
     id: 'program-includes',
     question: `What is included in the $${siteConfig.foundingPrice} program?`,
-    answer: `The founding pilot includes ${siteConfig.sessionCount} private coaching sessions over about ${siteConfig.programDurationWeeks} weeks, up to ${siteConfig.resumeReviewRounds} structured resume-review rounds, application and networking strategy, and interview preparation planning.`,
+    answer: `The founding pilot includes ${siteConfig.sessionCount} private coaching sessions over about ${siteConfig.programDurationWeeks} weeks, up to ${siteConfig.resumeReviewRounds} structured resume-review rounds, application and networking strategy, and interview preparation planning. How much you get out of it is largely dependent on the effort you put in between sessions.`,
   },
   {
     id: 'who-is-it-for',
@@ -46,12 +40,6 @@ export const faqs: FAQ[] = [
     question: 'Is this only for software engineering students?',
     answer:
       'No. The program supports students pursuing a range of technical internships. For roles outside software engineering, I distinguish between transferable recruiting guidance and advanced preparation that may require specialized resources or subject-matter experts.',
-  },
-  {
-    id: 'guarantees',
-    question: 'Do you guarantee interviews or offers?',
-    answer:
-      'No. Coaching does not guarantee interviews, offers, referrals, compensation, or sponsorship. Results depend on your effort, skills, preparation, eligibility, execution, and market conditions.',
   },
   {
     id: 'international',
@@ -168,11 +156,11 @@ export const faqs: FAQ[] = [
 export const faqGroups = [
   {
     title: 'Eligibility and fit',
-    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international', 'graduate-students', 'guarantees'],
+    ids: ['who-should-book', 'who-is-it-for', 'which-roles', 'only-swe', 'international', 'graduate-students'],
   },
   {
     title: 'Program and coaching',
-    ids: ['free-call-cost', 'strategy-call', 'obligation-to-enroll', 'duration', 'sessions', 'program-includes', 'resume-review', 'write-resume', 'apply-for-me', 'mock-interviews', 'assessments', 'time-commitment', 'between-sessions', 'after-program'],
+    ids: ['free-call-cost', 'strategy-call', 'duration', 'sessions', 'program-includes', 'resume-review', 'write-resume', 'apply-for-me', 'mock-interviews', 'assessments', 'time-commitment', 'between-sessions', 'after-program'],
   },
   {
     title: 'Pricing and scheduling',

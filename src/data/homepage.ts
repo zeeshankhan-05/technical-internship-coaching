@@ -157,8 +157,6 @@ export const homepageFaqIds = [
   'free-call-cost',
   'strategy-call',
   'who-should-book',
-  'obligation-to-enroll',
-  'guarantees',
   'program-includes',
 ];
 export const roleFamilies = compactRoleLabels;

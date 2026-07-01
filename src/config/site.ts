@@ -11,7 +11,7 @@ export const siteConfig = {
   tagline: 'Get honest resume feedback before your next application.',
   heroEyebrow: 'Free coaching call for undergraduates',
   heroSupporting:
-    'Book a free 30-minute call. I will review your resume and give you actionable feedback—completely free, with no obligation to enroll.',
+    'Book a free 20-minute call. I will review your resume and give you actionable feedback—completely free, with no obligation to enroll.',
   supportingStatement:
     'One-on-one coaching for students pursuing software engineering, AI, data, and related technical internships—from resume and project positioning to applications, networking, and preparation.',
 
@@ -44,7 +44,7 @@ export const siteConfig = {
     viewProgram: 'View the full program',
   },
 
-  trustLine: 'Free resume feedback on the call · 30 minutes · No charge · No obligation',
+  trustLine: 'Free resume feedback on the call · 20 minutes · No charge · No obligation',
 
   foundingPrice: 299,
   paymentPlanFirst: 150,
@@ -54,7 +54,7 @@ export const siteConfig = {
   programDurationWeeks: 6,
   maxCompletionWeeks: 8,
   resumeReviewRounds: 3,
-  strategyCallDurationMinutes: 30,
+  strategyCallDurationMinutes: 20,
 
   showCapacityScarcity: false,
   capacitySpotsRemaining: 0,

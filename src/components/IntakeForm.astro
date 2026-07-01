@@ -29,12 +29,15 @@ const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake
       <FormField id={id('full-name')} label="Full name" name="fullName" required />
       <FormField id={id('email')} label="Email" name="email" type="email" required />
     </div>
-    <FormField id={id('school-major')} label="School and major" name="schoolMajor" required placeholder="e.g. UIUC — Computer Science" />
+    <div class="grid gap-5 sm:grid-cols-2">
+      <FormField id={id('school')} label="School" name="school" required placeholder="e.g. UIUC" />
+      <FormField id={id('major')} label="Major" name="major" required placeholder="e.g. Computer Science" />
+    </div>
     <div class="grid gap-5 sm:grid-cols-2">
       <FormField id={id('graduation-date')} label="Expected graduation" name="graduationDate" type="month" required hint="Month and year" />
       <FormField id={id('target-role')} label="Target role or role family" name="targetRole" required placeholder="e.g. software engineering intern" />
     </div>
-    <FormField id={id('recruiting-season')} label="Recruiting season" name="recruitingSeason" required placeholder="e.g. Summer 2026" />
+    <FormField id={id('recruiting-season')} label="Recruiting season" name="recruitingSeason" required placeholder="e.g. Summer 2027" />
     <FormField
       id={id('biggest-challenge')}
       label="What is your biggest challenge right now?"
@@ -45,11 +48,12 @@ const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake
     />
     <FormField
       id={id('work-authorization')}
-      label="Sponsorship requirement, if relevant"
+      label="Sponsorship requirement"
       name="workAuthorization"
       as="select"
+      required
       options={[
-        { value: '', label: 'Select if applicable…' },
+        { value: '', label: 'Select one…' },
         { value: 'US citizen or permanent resident', label: 'US citizen or permanent resident' },
         { value: 'F-1 / OPT eligible', label: 'F-1 / OPT eligible' },
         { value: 'Requires sponsorship', label: 'Requires sponsorship' },
@@ -120,7 +124,8 @@ const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake
 
     const requiredFields = [
       { name: 'fullName', idSuffix: 'full-name', message: 'Please enter your full name.' },
-      { name: 'schoolMajor', idSuffix: 'school-major', message: 'Please enter your school and major.' },
+      { name: 'school', idSuffix: 'school', message: 'Please enter your school.' },
+      { name: 'major', idSuffix: 'major', message: 'Please enter your major.' },
       { name: 'graduationDate', idSuffix: 'graduation-date', message: 'Please select your expected graduation date.' },
       { name: 'targetRole', idSuffix: 'target-role', message: 'Please enter your target role.' },
       { name: 'recruitingSeason', idSuffix: 'recruiting-season', message: 'Please enter your recruiting season.' },
@@ -153,6 +158,13 @@ const intakeSubmitUrl = supabaseUrl ? `${supabaseUrl}/functions/v1/submit-intake
       valid = false;
       biggestChallenge?.setAttribute('aria-invalid', 'true');
       showFieldError(form, 'biggest-challenge', 'Please select your biggest challenge.');
+    }
+
+    const workAuthorization = form.querySelector('select[name="workAuthorization"]');
+    if (!workAuthorization?.value) {
+      valid = false;
+      workAuthorization?.setAttribute('aria-invalid', 'true');
+      showFieldError(form, 'work-authorization', 'Please select your sponsorship requirement.');
     }
 
     const linkedin = form.querySelector('input[name="linkedinUrl"]');

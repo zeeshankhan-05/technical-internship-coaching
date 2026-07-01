@@ -41,11 +41,13 @@ Deno.serve(async (req: Request) => {
     const requiredFields = [
       "fullName",
       "email",
-      "schoolMajor",
+      "school",
+      "major",
       "graduationDate",
       "targetRole",
       "recruitingSeason",
       "biggestChallenge",
+      "workAuthorization",
     ];
 
     for (const field of requiredFields) {
@@ -89,14 +91,13 @@ Deno.serve(async (req: Request) => {
       .insert({
         full_name: String(formData.get("fullName")).trim(),
         email,
-        school_major: String(formData.get("schoolMajor")).trim(),
+        school: String(formData.get("school")).trim(),
+        major: String(formData.get("major")).trim(),
         graduation_date: String(formData.get("graduationDate")).trim(),
         target_role: String(formData.get("targetRole")).trim(),
         recruiting_season: String(formData.get("recruitingSeason")).trim(),
         biggest_challenge: String(formData.get("biggestChallenge")).trim(),
-        work_authorization: formData.get("workAuthorization")
-          ? String(formData.get("workAuthorization")).trim()
-          : null,
+        work_authorization: String(formData.get("workAuthorization")).trim(),
         linkedin_url: linkedinUrl ? String(linkedinUrl).trim() : null,
         ai_processing: String(formData.get("aiProcessing")),
         privacy_consent: true,
